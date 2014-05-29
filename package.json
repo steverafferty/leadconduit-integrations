@@ -27,7 +27,8 @@
     "leadconduit-lendingtree": "*",
     "leadconduit-lowermybills": "*",
     "leadconduit-sendgrid": "*",
-    "leadconduit-highrise": "*"
+    "leadconduit-highrise": "*",
+    "leadconduit-trustedform": "*"
   },
   "devDependencies": {
     "coffee-script": ">= 1.7.0",
