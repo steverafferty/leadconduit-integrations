@@ -1,0 +1,37 @@
+{
+  "name": "leadconduit-integrations",
+  "description": "The integrations supported by LeadConduit",
+  "author": "Alex Wolfe <alex@activeprospect.com>",
+  "version": "0.0.1",
+  "main": "index.js",
+  "licenses": [
+    {
+      "type": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International",
+      "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/activeprospect/leadconduit-integrations.git"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "leadconduit-360": "*",
+    "leadconduit-briteverify": "*",
+    "leadconduit-buyerzone": "*",
+    "leadconduit-classic": "*",
+    "leadconduit-default": "*",
+    "leadconduit-hubspot": "*",
+    "leadconduit-lendingtree": "*",
+    "leadconduit-lowermybills": "*",
+    "leadconduit-sendgrid": "*",
+    "leadconduit-highrise": "*"
+  },
+  "devDependencies": {
+    "coffee-script": ">= 1.7.0",
+    "mocha": ">= 1.17.0",
+    "chai": ">= 1.9.0"
+  }
+}
