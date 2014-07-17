@@ -27,6 +27,7 @@
     "leadconduit-lendingtree": "*",
     "leadconduit-lowermybills": "*",
     "leadconduit-sendgrid": "*",
+    "leadconduit-suppressionlist": "*",
     "leadconduit-highrise": "*",
     "leadconduit-trustedform": "*"
   },
