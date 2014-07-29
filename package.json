@@ -2,7 +2,7 @@
   "name": "leadconduit-integrations",
   "description": "The integrations supported by LeadConduit",
   "author": "Alex Wolfe <alex@activeprospect.com>",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "licenses": [
     {
@@ -30,6 +30,7 @@
     "leadconduit-lowermybills": "*",
     "leadconduit-sendgrid": "*",
     "leadconduit-suppressionlist": "*",
+    "leadconduit-telesign": "*",
     "leadconduit-trustedform": "*"
   },
   "devDependencies": {
