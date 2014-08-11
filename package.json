@@ -4,6 +4,9 @@
   "author": "Alex Wolfe <alex@activeprospect.com>",
   "version": "0.0.4",
   "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test TZ=GMT ./node_modules/.bin/mocha spec/* --reporter spec --colors"
+  },
   "licenses": [
     {
       "type": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International",
@@ -32,11 +35,12 @@
     "leadconduit-sendgrid": "*",
     "leadconduit-suppressionlist": "*",
     "leadconduit-telesign": "*",
-    "leadconduit-trustedform": "*"
+    "leadconduit-trustedform": "*",
+    "dotaccess": "^1.0.5",
+    "underscore.string": "^2.3.3"
   },
   "devDependencies": {
-    "coffee-script": ">= 1.7.0",
-    "mocha": ">= 1.17.0",
-    "chai": ">= 1.9.0"
+    "mocha": "^1.21.4",
+    "chai": "^1.9.1"
   }
 }
