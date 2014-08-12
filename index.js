@@ -30,9 +30,14 @@ var generateName = function(modulePath) {
   return name.join(' ');
 };
 
-module.exports = {};
-module.exports.packages = {};
-module.exports.modules = {};
+module.exports = {
+  packages: {},
+  modules: {},
+  integrations: {},
+  lookup: function(moduleId) {
+    return module.exports.integrations[moduleId];
+  }
+};
 
 var names = Object.keys(require(path.join(__dirname, 'package.json')).dependencies).filter(function(name) {
   return name.match(/^leadconduit\-/)
@@ -73,6 +78,8 @@ names.forEach(function(name) {
       request_variables: integration.request.variables(),
       response_variables: integration.response.variables()
     };
+
+    module.exports.integrations[id] = integration;
   });
 });
 

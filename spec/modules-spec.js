@@ -10,4 +10,8 @@ describe('Modules', function() {
     }
   });
 
+  it('should lookup by module id', function() {
+    assert(integrations.lookup('leadconduit-default.inbound'))
+  });
+
 });
