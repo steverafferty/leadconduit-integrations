@@ -2,7 +2,7 @@
   "name": "leadconduit-integrations",
   "description": "The integrations supported by LeadConduit",
   "author": "Alex Wolfe <alex@activeprospect.com>",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test TZ=GMT ./node_modules/.bin/mocha spec/* --reporter spec --colors"
