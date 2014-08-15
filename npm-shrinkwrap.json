@@ -1,0 +1,1442 @@
+{
+  "name": "leadconduit-integrations",
+  "version": "0.0.6",
+  "dependencies": {
+    "dotaccess": {
+      "version": "1.0.5",
+      "from": "dotaccess@^1.0.5"
+    },
+    "leadconduit-360": {
+      "version": "0.4.3",
+      "from": "leadconduit-360@0.4.3",
+      "resolved": "https://registry.npmjs.org/leadconduit-360/-/leadconduit-360-0.4.3.tgz",
+      "dependencies": {
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@*",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                },
+                "xmlbuilder": {
+                  "version": "2.4.3",
+                  "from": "xmlbuilder@>=1.0.0",
+                  "dependencies": {
+                    "lodash-node": {
+                      "version": "2.4.1",
+                      "from": "lodash-node@~2.4.1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "flat": {
+          "version": "1.2.1",
+          "from": "flat@^1.2.1"
+        },
+        "dotaccess": {
+          "version": "1.0.5",
+          "from": "dotaccess@^1.0.5"
+        }
+      }
+    },
+    "leadconduit-briteverify": {
+      "version": "0.1.0",
+      "from": "leadconduit-briteverify@0.1.0"
+    },
+    "leadconduit-buyerzone": {
+      "version": "1.0.1",
+      "from": "leadconduit-buyerzone@1.0.1",
+      "resolved": "https://registry.npmjs.org/leadconduit-buyerzone/-/leadconduit-buyerzone-1.0.1.tgz",
+      "dependencies": {
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@*",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                }
+              }
+            }
+          }
+        },
+        "mimeparse": {
+          "version": "0.1.4",
+          "from": "mimeparse@*"
+        },
+        "xmlbuilder": {
+          "version": "2.4.3",
+          "from": "xmlbuilder@*",
+          "dependencies": {
+            "lodash-node": {
+              "version": "2.4.1",
+              "from": "lodash-node@~2.4.1"
+            }
+          }
+        },
+        "leadconduit-default": {
+          "version": "0.0.9",
+          "from": "leadconduit-default@*",
+          "resolved": "https://registry.npmjs.org/leadconduit-default/-/leadconduit-default-0.0.9.tgz",
+          "dependencies": {
+            "dataobject-parser": {
+              "version": "1.0.3",
+              "from": "dataobject-parser@*"
+            }
+          }
+        },
+        "dotaccess": {
+          "version": "1.0.5",
+          "from": "dotaccess@^1.0.4"
+        },
+        "lodash": {
+          "version": "2.4.1",
+          "from": "lodash@^2.4.1"
+        },
+        "leadconduit-integration": {
+          "version": "0.0.1",
+          "from": "leadconduit-integration@0.0.1"
+        }
+      }
+    },
+    "leadconduit-classic": {
+      "version": "0.1.0",
+      "from": "leadconduit-classic@0.1.0",
+      "dependencies": {
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@*",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                },
+                "xmlbuilder": {
+                  "version": "2.4.3",
+                  "from": "xmlbuilder@>=1.0.0",
+                  "dependencies": {
+                    "lodash-node": {
+                      "version": "2.4.1",
+                      "from": "lodash-node@~2.4.1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "leadconduit-default": {
+      "version": "0.0.9",
+      "from": "leadconduit-default@0.0.9",
+      "resolved": "https://registry.npmjs.org/leadconduit-default/-/leadconduit-default-0.0.9.tgz",
+      "dependencies": {
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@*",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                }
+              }
+            }
+          }
+        },
+        "mimeparse": {
+          "version": "0.1.4",
+          "from": "mimeparse@*"
+        },
+        "xmlbuilder": {
+          "version": "2.4.3",
+          "from": "xmlbuilder@*",
+          "dependencies": {
+            "lodash-node": {
+              "version": "2.4.1",
+              "from": "lodash-node@~2.4.1"
+            }
+          }
+        },
+        "dataobject-parser": {
+          "version": "1.0.3",
+          "from": "dataobject-parser@*",
+          "dependencies": {
+            "lodash": {
+              "version": "2.4.1",
+              "from": "lodash@~2.4.1"
+            }
+          }
+        },
+        "leadconduit-integration": {
+          "version": "0.0.1",
+          "from": "leadconduit-integration@0.0.1"
+        }
+      }
+    },
+    "leadconduit-highrise": {
+      "version": "0.0.11",
+      "from": "leadconduit-highrise@0.0.11",
+      "dependencies": {
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@*",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                }
+              }
+            }
+          }
+        },
+        "xmlbuilder": {
+          "version": "2.4.3",
+          "from": "xmlbuilder@*",
+          "dependencies": {
+            "lodash-node": {
+              "version": "2.4.1",
+              "from": "lodash-node@~2.4.1"
+            }
+          }
+        }
+      }
+    },
+    "leadconduit-hubspot": {
+      "version": "0.0.4",
+      "from": "leadconduit-hubspot@0.0.4",
+      "dependencies": {
+        "timekeeper": {
+          "version": "0.0.4",
+          "from": "timekeeper@0.0.4"
+        },
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@0.0.6",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                },
+                "xmlbuilder": {
+                  "version": "2.4.3",
+                  "from": "xmlbuilder@>=1.0.0",
+                  "dependencies": {
+                    "lodash-node": {
+                      "version": "2.4.1",
+                      "from": "lodash-node@~2.4.1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "leadconduit-leadpoint": {
+      "version": "0.0.2",
+      "from": "leadconduit-leadpoint@0.0.2",
+      "resolved": "https://registry.npmjs.org/leadconduit-leadpoint/-/leadconduit-leadpoint-0.0.2.tgz",
+      "dependencies": {
+        "timekeeper": {
+          "version": "0.0.4",
+          "from": "timekeeper@0.0.4"
+        },
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@*",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                },
+                "xmlbuilder": {
+                  "version": "2.4.3",
+                  "from": "xmlbuilder@>=1.0.0",
+                  "dependencies": {
+                    "lodash-node": {
+                      "version": "2.4.1",
+                      "from": "lodash-node@~2.4.1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "mimeparse": {
+          "version": "0.1.4",
+          "from": "mimeparse@*"
+        },
+        "moment": {
+          "version": "2.8.1",
+          "from": "moment@^2.7.0"
+        },
+        "dataobject-parser": {
+          "version": "1.0.3",
+          "from": "dataobject-parser@*",
+          "dependencies": {
+            "lodash": {
+              "version": "2.4.1",
+              "from": "lodash@~2.4.1"
+            }
+          }
+        },
+        "leadconduit-integration": {
+          "version": "0.0.1",
+          "from": "leadconduit-integration@0.0.1"
+        }
+      }
+    },
+    "leadconduit-lendingtree": {
+      "version": "1.0.0",
+      "from": "leadconduit-lendingtree@1.0.0",
+      "dependencies": {
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@>=0.0.6",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                }
+              }
+            }
+          }
+        },
+        "mimeparse": {
+          "version": "0.1.4",
+          "from": "mimeparse@^0.1.4"
+        },
+        "xmlbuilder": {
+          "version": "2.4.3",
+          "from": "xmlbuilder@^2.2.1",
+          "dependencies": {
+            "lodash-node": {
+              "version": "2.4.1",
+              "from": "lodash-node@~2.4.1"
+            }
+          }
+        },
+        "moment": {
+          "version": "2.8.1",
+          "from": "moment@^2.7.0"
+        },
+        "leadconduit-integration": {
+          "version": "0.0.1",
+          "from": "leadconduit-integration@0.0.1"
+        }
+      }
+    },
+    "leadconduit-lowermybills": {
+      "version": "0.0.2",
+      "from": "leadconduit-lowermybills@0.0.2",
+      "dependencies": {
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@*",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                }
+              }
+            }
+          }
+        },
+        "mimeparse": {
+          "version": "0.1.4",
+          "from": "mimeparse@*"
+        },
+        "xmlbuilder": {
+          "version": "2.4.3",
+          "from": "xmlbuilder@*",
+          "dependencies": {
+            "lodash-node": {
+              "version": "2.4.1",
+              "from": "lodash-node@~2.4.1"
+            }
+          }
+        },
+        "moment": {
+          "version": "2.8.1",
+          "from": "moment@^2.7.0"
+        },
+        "leadconduit-integration": {
+          "version": "0.0.1",
+          "from": "leadconduit-integration@0.0.1"
+        }
+      }
+    },
+    "leadconduit-mortech": {
+      "version": "0.1.3",
+      "from": "leadconduit-mortech@0.1.3"
+    },
+    "leadconduit-sendgrid": {
+      "version": "0.0.3",
+      "from": "leadconduit-sendgrid@0.0.3"
+    },
+    "leadconduit-suppressionlist": {
+      "version": "0.4.0",
+      "from": "leadconduit-suppressionlist@0.4.0",
+      "dependencies": {
+        "timekeeper": {
+          "version": "0.0.4",
+          "from": "timekeeper@0.0.4"
+        },
+        "mime-content": {
+          "version": "0.0.6",
+          "from": "mime-content@*",
+          "dependencies": {
+            "cheerio": {
+              "version": "0.17.0",
+              "from": "cheerio@>= 0.12.1",
+              "dependencies": {
+                "CSSselect": {
+                  "version": "0.4.1",
+                  "from": "CSSselect@0.4.1",
+                  "dependencies": {
+                    "CSSwhat": {
+                      "version": "0.4.7",
+                      "from": "CSSwhat@0.4"
+                    },
+                    "domutils": {
+                      "version": "1.4.3",
+                      "from": "domutils@1.4",
+                      "dependencies": {
+                        "domelementtype": {
+                          "version": "1.1.1",
+                          "from": "domelementtype@1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "entities": {
+                  "version": "1.1.1",
+                  "from": "entities@~1.1.1"
+                },
+                "htmlparser2": {
+                  "version": "3.7.3",
+                  "from": "htmlparser2@~3.7.2",
+                  "dependencies": {
+                    "domhandler": {
+                      "version": "2.2.0",
+                      "from": "domhandler@2.2"
+                    },
+                    "domutils": {
+                      "version": "1.5.0",
+                      "from": "domutils@1.5"
+                    },
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@1"
+                    },
+                    "readable-stream": {
+                      "version": "1.1.13-1",
+                      "from": "readable-stream@1.1.13-1",
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.1",
+                          "from": "core-util-is@~1.0.0"
+                        },
+                        "isarray": {
+                          "version": "0.0.1",
+                          "from": "isarray@0.0.1"
+                        },
+                        "string_decoder": {
+                          "version": "0.10.25-1",
+                          "from": "string_decoder@~0.10.x"
+                        },
+                        "inherits": {
+                          "version": "2.0.1",
+                          "from": "inherits@~2.0.1"
+                        }
+                      }
+                    },
+                    "entities": {
+                      "version": "1.0.0",
+                      "from": "entities@1.0.0"
+                    }
+                  }
+                },
+                "dom-serializer": {
+                  "version": "0.0.1",
+                  "from": "dom-serializer@~0.0.0",
+                  "dependencies": {
+                    "domelementtype": {
+                      "version": "1.1.1",
+                      "from": "domelementtype@~1.1.1"
+                    }
+                  }
+                },
+                "lodash": {
+                  "version": "2.4.1",
+                  "from": "lodash@~2.4.1"
+                }
+              }
+            },
+            "xpath": {
+              "version": "0.0.7",
+              "from": "xpath@>= 0.0.5"
+            },
+            "xmldom": {
+              "version": "0.1.19",
+              "from": "xmldom@>= 0.1.16"
+            },
+            "xml2js": {
+              "version": "0.4.4",
+              "from": "xml2js@> 0.0.0",
+              "dependencies": {
+                "sax": {
+                  "version": "0.6.0",
+                  "from": "sax@0.6.x"
+                },
+                "xmlbuilder": {
+                  "version": "2.4.3",
+                  "from": "xmlbuilder@>=1.0.0",
+                  "dependencies": {
+                    "lodash-node": {
+                      "version": "2.4.1",
+                      "from": "lodash-node@~2.4.1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "leadconduit-telesign": {
+      "version": "0.0.13",
+      "from": "leadconduit-telesign@0.0.13",
+      "resolved": "https://registry.npmjs.org/leadconduit-telesign/-/leadconduit-telesign-0.0.13.tgz",
+      "dependencies": {
+        "moment": {
+          "version": "2.8.1",
+          "from": "moment@^2.7.0"
+        },
+        "timekeeper": {
+          "version": "0.0.4",
+          "from": "timekeeper@0.0.4"
+        },
+        "underscore.string": {
+          "version": "2.3.3",
+          "from": "underscore.string@^2.3.3",
+          "resolved": "https://registry.npmjs.org/underscore.string/-/underscore.string-2.3.3.tgz"
+        }
+      }
+    },
+    "leadconduit-trustedform": {
+      "version": "0.1.6",
+      "from": "leadconduit-trustedform@0.1.6"
+    },
+    "underscore.string": {
+      "version": "2.3.3",
+      "from": "underscore.string@^2.3.3",
+      "resolved": "https://registry.npmjs.org/underscore.string/-/underscore.string-2.3.3.tgz"
+    }
+  }
+}
