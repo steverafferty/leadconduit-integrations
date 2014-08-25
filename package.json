@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "leadconduit-360": "~0.4.3",
+    "leadconduit-bills.com": "*",
     "leadconduit-briteverify": "~0.1.0",
     "leadconduit-buyerzone": "^1.0.0",
     "leadconduit-classic": "~0.1.0",
