@@ -36,6 +36,7 @@
     "leadconduit-lowermybills": "~0.0.2",
     "leadconduit-militarydotcom": "*",
     "leadconduit-mortech": "~0.1.3",
+    "leadconduit-pcdi": "0.0.1",
     "leadconduit-sendgrid": "~0.0.3",
     "leadconduit-suppressionlist": "~0.4.0",
     "leadconduit-telesign": "~0.0.13",
