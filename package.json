@@ -41,6 +41,7 @@
     "leadconduit-suppressionlist": "~0.4.0",
     "leadconduit-telesign": "~0.0.13",
     "leadconduit-trustedform": "~0.1.6",
+    "leadconduit-velocify": "~0.0.1",
     "dotaccess": "^1.0.5",
     "underscore.string": "^2.3.3"
   },
