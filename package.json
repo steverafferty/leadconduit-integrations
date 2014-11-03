@@ -21,7 +21,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "leadconduit-360": "~1.0.0",
+    "leadconduit-360": "1",
     "leadconduit-billsdotcom": "~0.1.0",
     "leadconduit-briteverify": "~0.1.0",
     "leadconduit-buyerzone": "^1.0.0",
