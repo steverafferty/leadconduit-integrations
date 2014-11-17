@@ -25,6 +25,7 @@
     "leadconduit-billsdotcom": "~0.1.0",
     "leadconduit-briteverify": "~0.1.0",
     "leadconduit-buyerzone": "^1.0.0",
+    "leadconduit-calq": "~0.0.1",
     "leadconduit-classic": "~0.1.0",
     "leadconduit-costco": "~0.0.1",
     "leadconduit-default": "~1.0.0",
