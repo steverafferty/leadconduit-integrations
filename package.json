@@ -23,7 +23,7 @@
   "dependencies": {
     "leadconduit-360": "2",
     "leadconduit-billsdotcom": "~0.1.0",
-    "leadconduit-briteverify": "~0.1.0",
+    "leadconduit-briteverify": "~0.2.0",
     "leadconduit-buyerzone": "^1.0.0",
     "leadconduit-calq": "~0.0.1",
     "leadconduit-classic": "~0.1.0",
