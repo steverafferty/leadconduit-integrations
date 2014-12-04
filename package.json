@@ -36,6 +36,7 @@
     "leadconduit-leadpoint": "^1.0.0",
     "leadconduit-lowermybills": "^1.0.0",
     "leadconduit-militarydotcom": "~0.1.0",
+    "leadconduit-homesdotcom": "~0.1.0",
     "leadconduit-mortech": "^1.0.0",
     "leadconduit-pcdi": "~0.0.2",
     "leadconduit-sendgrid": "~0.0.3",
