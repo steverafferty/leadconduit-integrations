@@ -11,7 +11,8 @@ var findPaths = function(api, modulePath) {
   if (modulePath == null)
     modulePath = '';
   var paths = [];
-  if (Object.keys(api).indexOf("request") !== -1) {
+  var apiProperties = Object.keys(api);
+  if (apiProperties.indexOf("request") !== -1 || apiProperties.indexOf('handle') !== -1) {
     paths.push(modulePath);
   } else {
     var key, module;
@@ -69,14 +70,20 @@ names.forEach(function(name) {
     else if (modulePath.match(/outbound/))
       type = 'outbound';
 
+
+    var requestVariables = integration.request ? integration.request.variables() : integration.inputVariables();
+    var responseVariables = integration.response ? integration.response.variables() : integration.outputVariables();
+
     module.exports.modules[id] = {
       id: id,
       type: type,
       package: module.exports.packages[name],
       path: modulePath,
       name: friendlyName,
-      request_variables: integration.request.variables(),
-      response_variables: integration.response.variables()
+      request_variables: requestVariables,
+      response_variables: responseVariables,
+      input_variables: requestVariables,
+      output_variables: responseVariables
     };
 
     module.exports.integrations[id] = integration;
