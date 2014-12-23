@@ -71,8 +71,8 @@ names.forEach(function(name) {
       type = 'outbound';
 
 
-    var requestVariables = integration.request ? integration.request.variables() : integration.inputVariables();
-    var responseVariables = integration.response ? integration.response.variables() : integration.outputVariables();
+    var requestVariables = integration.request ? integration.request.variables() : integration.requestVariables();
+    var responseVariables = integration.response ? integration.response.variables() : integration.responseVariables();
 
     module.exports.modules[id] = {
       id: id,
@@ -81,9 +81,7 @@ names.forEach(function(name) {
       path: modulePath,
       name: friendlyName,
       request_variables: requestVariables,
-      response_variables: responseVariables,
-      input_variables: requestVariables,
-      output_variables: responseVariables
+      response_variables: responseVariables
     };
 
     module.exports.integrations[id] = integration;
