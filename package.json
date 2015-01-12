@@ -46,10 +46,13 @@
     "leadconduit-trustedform": "~0.2",
     "leadconduit-velocify": "~0.0.1",
     "dotaccess": "^1.0.5",
-    "underscore.string": "^2.3.3"
+    "underscore.string": "^2.3.3",
+    "request": "^2.51.0"
   },
   "devDependencies": {
+    "chai": "^1.10.0",
+    "coffee-script": "^1.8.0",
     "mocha": "^1.21.4",
-    "chai": "^1.9.1"
+    "nock": "^0.56.0"
   }
 }
