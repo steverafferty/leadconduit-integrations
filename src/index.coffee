@@ -137,9 +137,11 @@ generateHandle = (outbound) ->
 
       # Collect response variables by invoking the outbound integration's response function
       try
-        callback(null, outbound.response(vars, outboundReq, response))
+        event = outbound.response(vars, outboundReq, response)
       catch err
-        callback(err)
+        return callback(err)
+
+      callback(null, event)
 
 #
 # Private: Turn headers into Camel-Case
