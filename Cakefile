@@ -8,6 +8,7 @@ task 'build', ->
     run "#{coffeePath} -o lib -c src"
   else
     console.log('> skipping build because coffee-script is not installed')
+    process.exit 1
 
 task 'test', ->
   path = 'spec/*spec.coffee'
