@@ -34,7 +34,7 @@
     "leadconduit-highrise": "~0.0.11",
     "leadconduit-hubspot": "~0.0.4",
     "leadconduit-lendingtree": "^1.2.0",
-    "leadconduit-leadperfection": "~0.0.1",
+    "leadconduit-leadperfection": "^0.1.0",
     "leadconduit-leadpoint": "^1.0.0",
     "leadconduit-lendio": "~0",
     "leadconduit-lowermybills": "^1.0.0",

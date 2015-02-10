@@ -4,3 +4,4 @@ node_js:
 notifications:
   slack:
     secure: nZuo5NTQAQXjg/D1Mz0yLDph9OQNFBRIDwTXWPsEHMCjWuCIxGby85O55ufwCLF+fY2NVKPYEJQG8Cph3fjZezTK7OBys+I51Zf8rluaRlkQP6WRKTx/qI/5aohnAZn/mPnF08NNuT1DIPs316m34KlsgR/JPrbyKHeJL6adOR8=
+sudo: false
