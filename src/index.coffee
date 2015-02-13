@@ -1,3 +1,4 @@
+_ = require('lodash')
 dotaccess = require('dotaccess')
 string = require('underscore.string')
 path = require('path')
@@ -69,6 +70,7 @@ init = ->
 register = (id, integration) ->
   generateHandle(integration)
   generateTypes(integration)
+  generateAppendPrefix(integration)
   integrations[id] = integration
   integration
 
@@ -86,15 +88,8 @@ deregister = (id) ->
 # Returned module is guaranteed to have a handle() function.
 #
 lookup = (moduleId) ->
-  integration = integrations[moduleId]
+  integrations[moduleId]
 
-  # Wrap the request() and response() functions by implementing handle(), if necessary
-  generateHandle(integration)
-
-  # Set the requestTypes and responseTypes lookups
-  generateTypes(integration)
-
-  integration
 
 
 #
@@ -155,24 +150,11 @@ generateTypes = (integration) ->
   integration.requestTypes ?= getRequestTypes(integration)
   integration.responseTypes ?= getResponseTypes(integration)
 
-
 getRequestTypes = (integration) ->
-  variables =
-    if typeof integration.requestVariables == 'function'
-      integration.requestVariables?()
-    else if typeof integration.request == 'function'
-      integration.request.variables?()
-  getTypes(variables)
-
+  getTypes(getRequestVariables(integration))
 
 getResponseTypes = (integration) ->
-  variables =
-    if typeof integration.responseVariables == 'function'
-      integration.responseVariables?()
-    else if typeof integration.response == 'function'
-      integration.response.variables?()
-  getTypes(variables)
-
+  getTypes(getResponseVariables(integration))
 
 getTypes = (variables) ->
   mapType = (types, v) ->
@@ -180,6 +162,30 @@ getTypes = (variables) ->
     types
 
   (variables ? []).reduce(mapType, {})
+
+getRequestVariables = (integration) ->
+  if typeof integration.requestVariables == 'function'
+    integration.requestVariables?()
+  else if typeof integration.request == 'function'
+    integration.request.variables?()
+
+
+getResponseVariables = (integration) ->
+  if typeof integration.responseVariables == 'function'
+    integration.responseVariables?()
+  else if typeof integration.response == 'function'
+    integration.response.variables?()
+
+
+#
+# Private: resolve the prefix where an integration's outcome key will live
+#
+generateAppendPrefix = (integration) ->
+  outcomeRegex = /\.?outcome$/
+  outcomeVar = _.find getResponseVariables(integration), (v) ->
+    v.name?.match(outcomeRegex)
+  if outcomeVar?.name?
+    integration.appendPrefix = outcomeVar.name.replace(outcomeRegex, '') or null
 
 
 #

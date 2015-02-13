@@ -10,9 +10,12 @@ describe 'Handle', ->
       .post '/'
       .reply 200, outcome: 'success'
 
+  after ->
+    integrations.deregister 'test'
+
 
   it 'should make request', (done) ->
-    integrations.integrations.test =
+    integrations.register 'test',
       request: ->
         url: 'http://externalservice'
         method: 'POST'
@@ -26,7 +29,7 @@ describe 'Handle', ->
 
 
   it 'should return error when an error is thrown during request', (done) ->
-    integrations.integrations.test =
+    integrations.register 'test',
       request: ->
         throw new Error('no way, bub')
       response: (vars, req, res) ->
@@ -39,7 +42,7 @@ describe 'Handle', ->
 
 
   it 'should return error when an error is thrown during response', (done) ->
-    integrations.integrations.test =
+    integrations.register 'test',
       request: ->
         url: 'http://externalservice'
         method: 'POST'
