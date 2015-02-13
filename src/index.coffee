@@ -68,6 +68,7 @@ init = ->
 #
 register = (id, integration) ->
   generateHandle(integration)
+  generateTypes(integration)
   integrations[id] = integration
   integration
 
@@ -89,6 +90,9 @@ lookup = (moduleId) ->
 
   # Wrap the request() and response() functions by implementing handle(), if necessary
   generateHandle(integration)
+
+  # Set the requestTypes and responseTypes lookups
+  generateTypes(integration)
 
   integration
 
@@ -142,6 +146,41 @@ generateHandle = (outbound) ->
         return callback(err)
 
       callback(null, event)
+
+
+#
+# Private: Generate the requestTypes and responseTypes properties on the integration
+#
+generateTypes = (integration) ->
+  integration.requestTypes ?= getRequestTypes(integration)
+  integration.responseTypes ?= getResponseTypes(integration)
+
+
+getRequestTypes = (integration) ->
+  variables =
+    if typeof integration.requestVariables == 'function'
+      integration.requestVariables?()
+    else if typeof integration.request == 'function'
+      integration.request.variables?()
+  getTypes(variables)
+
+
+getResponseTypes = (integration) ->
+  variables =
+    if typeof integration.responseVariables == 'function'
+      integration.responseVariables?()
+    else if typeof integration.response == 'function'
+      integration.response.variables?()
+  getTypes(variables)
+
+
+getTypes = (variables) ->
+  mapType = (types, v) ->
+    types[v.name] = v.type
+    types
+
+  (variables ? []).reduce(mapType, {})
+
 
 #
 # Private: Turn headers into Camel-Case
