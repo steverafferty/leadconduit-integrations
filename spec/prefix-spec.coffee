@@ -7,13 +7,13 @@ describe 'Prefix', ->
     integrations.deregister 'test'
 
 
-  it 'should be null when outcome is at the root', ->
+  it 'should be empty string when outcome is at the root', ->
     integrations.register 'test',
       responseVariables: ->
         [
           { name: 'outcome', type: 'string' }
         ]
-    assert.isNull integrations.lookup('test').appendPrefix
+    assert.equal integrations.lookup('test').appendPrefix, ''
 
 
   it 'should be undefined when outcome variable is not defined', ->

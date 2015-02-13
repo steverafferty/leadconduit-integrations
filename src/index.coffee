@@ -185,7 +185,7 @@ generateAppendPrefix = (integration) ->
   outcomeVar = _.find getResponseVariables(integration), (v) ->
     v.name?.match(outcomeRegex)
   if outcomeVar?.name?
-    integration.appendPrefix = outcomeVar.name.replace(outcomeRegex, '') or null
+    integration.appendPrefix = outcomeVar.name.replace(outcomeRegex, '')
 
 
 #
