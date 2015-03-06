@@ -79,7 +79,7 @@ register = (id, integration) ->
 # Public: De-register an integration.
 #
 deregister = (id) ->
-  delete integrations.id
+  delete integrations[id]
 
 
 #
