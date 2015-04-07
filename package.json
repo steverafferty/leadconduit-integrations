@@ -44,7 +44,7 @@
     "leadconduit-militarydotcom": "~0.2.0",
     "leadconduit-mortech": "^1.0.0",
     "leadconduit-pcdi": "~0.0.2",
-    "leadconduit-sendgrid": "~1.0.0",
+    "leadconduit-sendgrid": "^1.0.0",
     "leadconduit-suppressionlist": "^1.0.0",
     "leadconduit-telesign": "^1.0.0",
     "leadconduit-towerdata": "^1.0.0",
