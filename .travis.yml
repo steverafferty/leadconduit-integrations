@@ -1,10 +1,10 @@
 language: node_js
 node_js:
   - 0.10
+before_install: npm install -g npm@latest
 notifications:
   slack:
     secure: nZuo5NTQAQXjg/D1Mz0yLDph9OQNFBRIDwTXWPsEHMCjWuCIxGby85O55ufwCLF+fY2NVKPYEJQG8Cph3fjZezTK7OBys+I51Zf8rluaRlkQP6WRKTx/qI/5aohnAZn/mPnF08NNuT1DIPs316m34KlsgR/JPrbyKHeJL6adOR8=
 sudo: false
 env:
-  global:
-    secure: EsFR7VV9fbovthwDCZaXbu0CfgpXZXHSvoViQc8AlsIWB2++RwbEQkNybLrd9QaRhKBaIIzAF3EO3mZAMYjhifwol2oJoqa+FLroban6xFklP0SO6rb1Co2IIsJWvzAtO9t7xH9vQrVP6DTTn6Rv8jhAmbxjtRKjU2p7lBm4iRk=
+  secure: "lnFfau7TZIazQ8nKU0VxGA7S/ArdxTJw8chH/44Cv1wJwYEjopTA034CZPlyXcPwXfQPtT3YS5SnPRNbwcjjsQGfEOMawBqxGrrASSP3BY+PzA9qmEgdYwtW1sRLeH/Z65ZP5AnC9dtDyLftltytIc+Fb9uGb7XiGsv7d419BsY="
