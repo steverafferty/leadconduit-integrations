@@ -19,7 +19,7 @@ init = ->
   # Collect the names of the integration dependencies defined in package.json
   #
   packageNames = Object.keys(require(path.join(__dirname, '..', 'package.json')).dependencies).filter (name) ->
-    name.match(/^leadconduit\-/)
+    name.match(/^leadconduit\-|^@activeprospect\/leadconduit\-/)
 
 
   #
@@ -30,6 +30,7 @@ init = ->
     pkg = require(path.join(__dirname, '..', 'node_modules', name, 'package.json'))
     paths = findPaths(api)
 
+    name = name.replace /^@activeprospect\//, ''
     module.exports[name] = api;
 
     packages[name] =
