@@ -5,7 +5,7 @@ log = console.log
 task 'build', ->
   coffeePath = './node_modules/coffee-script/bin/coffee'
   if fs.existsSync(coffeePath)
-    run "#{coffeePath} -o lib -c src"
+    run "rm -rf lib; #{coffeePath} -o lib -c src"
   else
     console.log('> skipping build because coffee-script is not installed')
     process.exit 1

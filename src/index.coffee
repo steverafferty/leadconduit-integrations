@@ -41,27 +41,8 @@ init = ->
       paths: paths
 
     for modulePath in paths
-      integration = dotaccess.get(api, modulePath)
-      friendlyName = integration.name or generateName(modulePath)
       id = "#{name}.#{modulePath}"
-      type =
-        if (modulePath.match(/inbound/))
-          'inbound';
-        else if (modulePath.match(/outbound/))
-          'outbound';
-
-      requestVariables = integration?.requestVariables?() ? integration.request?.variables?()
-      responseVariables = integration?.responseVariables?() ? integration.response?.variables?()
-
-      modules[id] =
-        id: id
-        type: type
-        package: packages[name]
-        path: modulePath
-        name: friendlyName
-        request_variables: requestVariables
-        response_variables: responseVariables
-
+      integration = dotaccess.get(api, modulePath)
       register id, integration
 
 
@@ -69,6 +50,7 @@ init = ->
 # Public: Register an integration.
 #
 register = (id, integration) ->
+  generateModule(id, integration)
   generateHandle(integration)
   generateTypes(integration)
   generateAppendPrefix(integration)
@@ -96,6 +78,30 @@ lookup = (moduleId) ->
 #
 # Helpers ----------------------------------------------------------------
 #
+
+
+generateModule = (id, integration) ->
+  parts = id.split(/\./)
+  name = parts.shift()
+  modulePath = parts.join('.')
+  friendlyName = integration.name or generateName(modulePath)
+  type =
+    if (modulePath.match(/inbound/))
+      'inbound';
+    else if (modulePath.match(/outbound/))
+      'outbound';
+
+  requestVariables = integration?.requestVariables?() ? integration.request?.variables?()
+  responseVariables = integration?.responseVariables?() ? integration.response?.variables?()
+
+  modules[id] =
+    id: id
+    type: type
+    package: packages[name]
+    path: modulePath
+    name: friendlyName
+    request_variables: requestVariables
+    response_variables: responseVariables
 
 
 #
