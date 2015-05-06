@@ -32,7 +32,7 @@
     "leadconduit-closeio": "~0.1.0",
     "leadconduit-costco": "~0.0.1",
     "leadconduit-datamyx": "^1.0.0",
-    "leadconduit-default": "~2.0.0",
+    "leadconduit-default": "^2.1.0",
     "leadconduit-highrise": "~0.0.11",
     "leadconduit-homesdotcom": "~0.1.0",
     "leadconduit-hubspot": "~0.0.4",
