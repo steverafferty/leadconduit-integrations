@@ -52,6 +52,7 @@
     "leadconduit-velocify": "~0.0.1",
     "leadconduit-webbula": "~0.0.1",
     "leadconduit-experian": "~0.0.1",
+    "leadconduit-pixeltracker": "~0.0.1",
     "lodash": "^3.2.0",
     "request": "^2.51.0",
     "underscore.string": "^2.3.3"
