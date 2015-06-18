@@ -2,7 +2,7 @@
   "name": "@activeprospect/leadconduit-integrations",
   "description": "The integrations supported by LeadConduit",
   "author": "Alex Wolfe <alex@activeprospect.com>",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "main": "index.js",
   "scripts": {
     "test": "cake test",
@@ -55,8 +55,6 @@
     "leadconduit-trustedform": "^1.0.0",
     "leadconduit-velocify": "~0.0.1",
     "leadconduit-webbula": "~0.3.0",
-    "leadconduit-experian": "~0.0.1",
-    "leadconduit-pixeltracker": "~0.0.1",
     "leadconduit-autoresponder": "^0.0.1",
     "lodash": "^3.2.0",
     "request": "^2.51.0",
