@@ -47,3 +47,28 @@ describe 'Types', ->
       ]
     integrations.register 'test', response: response
     assert.deepEqual integrations.lookup('test').responseTypes, foo: 'boolean', bar: 'number'
+
+
+
+  it 'should use string as default type', ->
+
+    integrations.register 'test',
+      requestVariables: ->
+        [ name: 'foo']
+      responseVariables: ->
+        [ name: 'bar']
+
+    assert.deepEqual integrations.lookup('test').requestTypes, foo: 'string'
+    assert.deepEqual integrations.lookup('test').responseTypes, bar: 'string'
+
+
+  it 'should use standard field type as default type', ->
+
+    integrations.register 'test',
+      requestVariables: ->
+        [ name: 'postal_code']
+      responseVariables: ->
+        [ name: 'phone_1']
+
+    assert.deepEqual integrations.lookup('test').requestTypes, postal_code: 'postal_code'
+    assert.deepEqual integrations.lookup('test').responseTypes, phone_1: 'phone'

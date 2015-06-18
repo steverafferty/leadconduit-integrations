@@ -3,6 +3,7 @@ dotaccess = require('dotaccess')
 string = require('underscore.string')
 path = require('path')
 request = require('request')
+fields = require('leadconduit-fields')
 
 #
 # Public
@@ -19,7 +20,7 @@ init = ->
   # Collect the names of the integration dependencies defined in package.json
   #
   packageNames = Object.keys(require(path.join(__dirname, '..', 'package.json')).dependencies).filter (name) ->
-    name.match(/^leadconduit\-|^@activeprospect\/leadconduit\-/)
+    name.match(/^leadconduit\-|^@activeprospect\/leadconduit\-/)  and name != 'leadconduit-fields'
 
 
   #
@@ -28,6 +29,7 @@ init = ->
   for name in packageNames
     api = require(name)
     pkg = require(path.join(__dirname, '..', 'node_modules', name, 'package.json'))
+
     paths = findPaths(api)
 
     name = name.replace /^@activeprospect\//, ''
@@ -165,10 +167,13 @@ getResponseTypes = (integration) ->
 
 getTypes = (variables) ->
   mapType = (types, v) ->
-    types[v.name] = v.type
+    types[v.name] = v.type ? getDefaultType(v.name)
     types
 
   (variables ? []).reduce(mapType, {})
+
+getDefaultType = (varName) ->
+  fields.getType(varName) ? 'string'
 
 getRequestVariables = (integration) ->
   if typeof integration.requestVariables == 'function'
