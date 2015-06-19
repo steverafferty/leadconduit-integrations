@@ -25,6 +25,7 @@
     "@activeprospect/leadconduit-360": "2",
     "@activeprospect/leadconduit-buyerzone": "^1.10.0",
     "dotaccess": "^1.0.5",
+    "leadconduit-autoresponder": "~0.0.1",
     "leadconduit-batchrobot": "~0.0.2",
     "leadconduit-billsdotcom": "~0.2.0",
     "leadconduit-briteverify": "~0.3.0",
@@ -55,7 +56,6 @@
     "leadconduit-trustedform": "^1.0.0",
     "leadconduit-velocify": "~0.0.1",
     "leadconduit-webbula": "~0.3.0",
-    "leadconduit-autoresponder": "^0.0.1",
     "lodash": "^3.2.0",
     "request": "^2.51.0",
     "underscore.string": "^2.3.3"
