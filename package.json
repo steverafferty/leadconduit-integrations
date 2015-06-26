@@ -8,12 +8,7 @@
     "test": "cake test",
     "prepublish": "cake build"
   },
-  "licenses": [
-    {
-      "type": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International",
-      "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode"
-    }
-  ],
+  "license": "CC-BY-NC-ND-4.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/activeprospect/leadconduit-integrations.git"
@@ -56,6 +51,7 @@
     "leadconduit-trustedform": "^1.0.0",
     "leadconduit-velocify": "~0.0.1",
     "leadconduit-webbula": "~0.3.0",
+    "leadconduit-zipcodes": "~0.0.1",
     "lodash": "^3.2.0",
     "request": "^2.51.0",
     "underscore.string": "^2.3.3"
