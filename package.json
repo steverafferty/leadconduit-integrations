@@ -26,6 +26,7 @@
     "leadconduit-briteverify": "~0.3.0",
     "leadconduit-calq": "~0.0.1",
     "leadconduit-classic": "~0.1.0",
+    "leadconduit-clearbit": "~0.0.1",
     "leadconduit-closeio": "~0.1.0",
     "leadconduit-costco": "~0.0.1",
     "leadconduit-datamyx": "^1.0.0",
