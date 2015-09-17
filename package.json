@@ -52,7 +52,7 @@
     "leadconduit-telesign": "^1.0.0",
     "leadconduit-towerdata": "^1.0.0",
     "leadconduit-trustedform": "^1.0.0",
-    "leadconduit-velocify": "~0.0.1",
+    "leadconduit-velocify": "^0.1",
     "leadconduit-versium": "~0.0.1",
     "leadconduit-webbula": "~0.3.0",
     "leadconduit-whitepages": "~0.0.1",
