@@ -64,6 +64,7 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "coffee-script": "^1.8.0",
+    "leadconduit-types": "^3.2.3",
     "mocha": "^1.21.4",
     "nock": "^0.56.0"
   }

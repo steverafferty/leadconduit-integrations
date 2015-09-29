@@ -1,5 +1,6 @@
 assert = require('chai').assert
 nock = require('nock')
+types = require('leadconduit-types')
 integrations = require('../src/index')
 
 describe 'Handle', ->
@@ -18,6 +19,20 @@ describe 'Handle', ->
     integrations.register 'test',
       request: ->
         url: 'http://externalservice'
+        method: 'POST'
+      response: (vars, req, res) ->
+        JSON.parse(res.body)
+
+    integrations.lookup('test').handle {}, (err, event) ->
+      return done(err) if err?
+      assert.equal event.outcome, 'success'
+      done()
+
+
+  it 'should make request with rich url type', (done) ->
+    integrations.register 'test',
+      request: ->
+        url: types.url.parse('http://externalservice')
         method: 'POST'
       response: (vars, req, res) ->
         JSON.parse(res.body)
