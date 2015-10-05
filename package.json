@@ -54,7 +54,7 @@
     "leadconduit-towerdata": "^1.0.0",
     "leadconduit-trustedform": "^1.0.0",
     "leadconduit-velocify": "^0.1",
-    "leadconduit-versium": "~0.0.1",
+    "leadconduit-versium": "^0.1.0",
     "leadconduit-webbula": "~0.3.0",
     "leadconduit-whitepages": "~0.0.1",
     "leadconduit-zipcodes": "~0.0.1",
