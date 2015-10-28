@@ -25,6 +25,7 @@
     "leadconduit-billsdotcom": "~0.2.0",
     "leadconduit-briteverify": "~0.3.0",
     "leadconduit-calq": "~0.0.1",
+    "leadconduit-cashcall": "~0.0.1",
     "leadconduit-classic": "~0.1.0",
     "leadconduit-clearbit": "~0.0.1",
     "leadconduit-closeio": "~0.1.0",
