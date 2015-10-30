@@ -39,6 +39,7 @@
     "leadconduit-homesdotcom": "~0.1.0",
     "leadconduit-hubspot": "~0.0.4",
     "leadconduit-leadperfection": "^0.2.0",
+    "leadconduit-leadid": "~0.0.1",
     "leadconduit-leadpoint": "^1.0.0",
     "leadconduit-lendingtree": "^1.2.0",
     "leadconduit-lendio": "~0",
