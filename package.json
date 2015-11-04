@@ -50,6 +50,7 @@
     "leadconduit-pcdi": "~0.0.2",
     "leadconduit-pixeltracker": "~0.0.1",
     "leadconduit-powerbi": "~0.0.1",
+    "leadconduit-salesforce": "~0.0.1",
     "leadconduit-sendgrid": "^1.0.0",
     "leadconduit-suppressionlist": "^1.0.0",
     "leadconduit-telesign": "^1.0.0",
