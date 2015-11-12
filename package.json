@@ -17,7 +17,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "@activeprospect/leadconduit-360": "2.3.2",
+    "@activeprospect/leadconduit-360": "2",
     "@activeprospect/leadconduit-buyerzone": "^1.10.0",
     "dotaccess": "^1.0.5",
     "leadconduit-autoresponder": "~0.0.1",
