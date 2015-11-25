@@ -61,7 +61,7 @@
     "leadconduit-velocify": "^0.1",
     "leadconduit-versium": "^0.1.0",
     "leadconduit-webbula": "~0.5.0",
-    "leadconduit-whitepages": "^0.1.0",
+    "leadconduit-whitepages": "~0.2.0",
     "leadconduit-zipcodes": "~0.0.1",
     "lodash": "^3.2.0",
     "request": "^2.51.0",
