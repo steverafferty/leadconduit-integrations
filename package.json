@@ -65,7 +65,7 @@
     "leadconduit-zillow": "~0.0.3",
     "leadconduit-zipcodes": "^0.1.0",
     "lodash": "^3.2.0",
-    "request": "^2.51.0",
+    "request": "^2.67.0",
     "underscore.string": "^2.3.3"
   },
   "devDependencies": {
@@ -73,6 +73,6 @@
     "coffee-script": "^1.8.0",
     "leadconduit-types": "^3.2.3",
     "mocha": "^1.21.4",
-    "nock": "^0.56.0"
+    "nock": "^5.2.1"
   }
 }
