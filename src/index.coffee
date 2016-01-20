@@ -126,6 +126,7 @@ generateHandle = (outbound) ->
     # Protect against the request module throwing an error when bad options are specified
     makeRequest = (options, cb) ->
       options.url = options.url?.valueOf()
+      options.timeout ?= 360000 # Same as the load balancer timeout
       return cb(new Error('request missing URL')) unless options.url?.trim()
       return cb(new Error('request missing method')) unless options.method?.trim()
       try

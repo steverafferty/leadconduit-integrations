@@ -11,6 +11,9 @@ describe 'Handle', ->
       .post '/'
       .reply 200, outcome: 'success'
 
+  afterEach ->
+    nock.cleanAll()
+
   after ->
     integrations.deregister 'test'
 
