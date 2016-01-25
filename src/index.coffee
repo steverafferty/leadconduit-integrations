@@ -11,6 +11,8 @@ fields = require('leadconduit-fields')
 packages = {}
 modules = {}
 integrations = {}
+maxTimeout = 360 # Same as the load balancer timeout
+minTimeout = 1
 
 #
 # Private: Build the packages, modules, and integrations
@@ -126,9 +128,18 @@ generateHandle = (outbound) ->
     # Protect against the request module throwing an error when bad options are specified
     makeRequest = (options, cb) ->
       options.url = options.url?.valueOf()
-      options.timeout ?= 360000 # Same as the load balancer timeout
+      options.timeout ?= vars.timeout_seconds ? maxTimeout
       return cb(new Error('request missing URL')) unless options.url?.trim()
       return cb(new Error('request missing method')) unless options.method?.trim()
+      return cb(new Error('request timeout must be a number')) unless _.isFinite(options.timeout)
+
+      # Ensure that timeout is set somewhere between minTimeout and maxTimeout
+      options.timeout = maxTimeout if options.timeout > maxTimeout
+      options.timeout = minTimeout if options.timeout < minTimeout
+
+      # Convert timeout seconds to milliseconds
+      options.timeout = options.timeout * 1000
+
       try
         request options, cb
       catch err
@@ -260,3 +271,5 @@ module.exports =
   register: register
   deregister: deregister
   lookup: lookup
+  maxTimeout: maxTimeout
+  minTimeout: minTimeout
