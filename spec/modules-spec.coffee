@@ -1,3 +1,4 @@
+_ = require('lodash')
 assert = require('chai').assert
 integrations = require('../src/index')
 
@@ -14,3 +15,11 @@ describe 'Modules', ->
 
   it 'should find private @activeprospect module by id', ->
     assert integrations.lookup('leadconduit-360.outbound.vendor_lookup')
+
+  it 'should provide timeout seconds', ->
+    requestVars = integrations.modules['leadconduit-default.outbound'].request_variables
+    assert.deepEqual _.find(requestVars, name: 'timeout_seconds'),
+      name: 'timeout_seconds'
+      type: 'number'
+      description: 'Produce an "error" outcome if the server fails to respond within this number of seconds (default: 360)'
+      required: false
