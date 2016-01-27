@@ -91,3 +91,4 @@ describe 'Timeout', ->
     integrations.lookup('test').handle timeout_seconds: 'donkey', (err) ->
       assert.equal err.message, 'request timeout must be a number'
       done()
+

@@ -95,8 +95,12 @@ generateModule = (id, integration) ->
     else if (modulePath.match(/outbound/))
       'outbound';
 
-  requestVariables = integration?.requestVariables?() ? integration.request?.variables?()
-  responseVariables = integration?.responseVariables?() ? integration.response?.variables?()
+  requestVariables = integration?.requestVariables?() ? integration.request?.variables?() ? []
+  responseVariables = integration?.responseVariables?() ? integration.response?.variables?() ? []
+
+  # Add the timeout_seconds request variable
+  if type == 'outbound' and !_.find(requestVariables, name: 'timeout_seconds')
+    requestVariables.push(name: 'timeout_seconds', type: 'number', description: 'Produce an "error" outcome if the server fails to respond within this number of seconds (default: 360)', required: false)
 
   modules[id] =
     id: id
