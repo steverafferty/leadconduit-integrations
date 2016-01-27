@@ -82,13 +82,13 @@ describe 'Timeout', ->
       done()
 
 
-  it 'should return error when request function returns non-number', (done) ->
+  it 'should not return error when request function returns non-number', (done) ->
     nock 'http://externalservice'
       .post '/'
-      .socketDelay 10000
       .reply 200, outcome: 'success'
 
-    integrations.lookup('test').handle timeout_seconds: 'donkey', (err) ->
-      assert.equal err.message, 'request timeout must be a number'
+    integrations.lookup('test').handle timeout_seconds: 'donkey', (err, event) ->
+      assert.isNull err
+      assert event
       done()
 
