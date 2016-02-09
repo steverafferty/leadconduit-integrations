@@ -63,7 +63,7 @@
     "leadconduit-webbula": "^0.6.0",
     "leadconduit-whitepages": "^0.3.0",
     "leadconduit-zillow": "~0.0.3",
-    "leadconduit-zipcodes": "^0.1.0",
+    "leadconduit-zipcodes": "^0.2.0",
     "lodash": "^3.2.0",
     "request": "^2.51.0",
     "underscore.string": "^2.3.3"
