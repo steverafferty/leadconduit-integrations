@@ -44,7 +44,7 @@
     "leadconduit-leadid": "~0.0.1",
     "leadconduit-leadpoint": "^1.0.0",
     "leadconduit-lendingtree": "^1.2.0",
-    "leadconduit-lendio": "~0",
+    "leadconduit-lendio": "^1.0.0",
     "leadconduit-lowermybills": "^1.0.0",
     "leadconduit-marketo": "~0.2.0",
     "leadconduit-militarydotcom": "~0.2.0",
