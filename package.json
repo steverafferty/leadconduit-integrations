@@ -37,7 +37,7 @@
     "leadconduit-experian": "^1.3.0",
     "leadconduit-facebook": "~0.0.1",
     "leadconduit-fields": "^2.1.1",
-    "leadconduit-generic": "^1.0.0",
+    "leadconduit-custom": "^2.0.0",
     "leadconduit-highrise": "~0.0.11",
     "leadconduit-homesdotcom": "~0.1.0",
     "leadconduit-hubspot": "~0.0.4",
