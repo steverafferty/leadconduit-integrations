@@ -145,6 +145,9 @@ generateHandle = (outbound) ->
     catch err
       return callback(err)
 
+    # remove Content-Length header and let the request library set it (correctly, on byte length, not character length)
+    outboundReq.headers['Content-Length'] = undefined if outboundReq.headers?
+
     # Protect against the request module throwing an error when bad options are specified
     makeRequest = (options, cb) ->
       options.url = options.url?.valueOf()
