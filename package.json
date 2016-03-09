@@ -22,7 +22,7 @@
     "dotaccess": "^1.0.5",
     "leadconduit-autoresponder": "^0.1.0",
     "leadconduit-batchrobot": "~0.0.2",
-    "leadconduit-billsdotcom": "~0.2.0",
+    "leadconduit-billsdotcom": "^0.3.0",
     "leadconduit-briteverify": "^0.4.0",
     "leadconduit-cake": "~0.0.2",
     "leadconduit-calq": "~0.0.1",
