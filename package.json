@@ -61,6 +61,7 @@
     "leadconduit-telesign": "^1.2.0",
     "leadconduit-towerdata": "^1.0.0",
     "leadconduit-twilio": "~0.0.1",
+    "leadconduit-twitter": "~0.0.1",
     "leadconduit-trustedform": "^1.0.0",
     "leadconduit-velocify": "^0.1",
     "leadconduit-versium": "^0.2.0",
