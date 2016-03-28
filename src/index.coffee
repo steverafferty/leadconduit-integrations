@@ -46,7 +46,7 @@ init = ->
 
     for modulePath in paths
       id = "#{name}.#{modulePath}"
-      integration = dotaccess.get(api, modulePath)
+      integration = dotaccess.get(api, modulePath) ? api[modulePath]
       register id, integration
 
 
