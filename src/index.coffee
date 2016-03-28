@@ -29,25 +29,33 @@ init = ->
   # Build the package, module, and integration metadata
   #
   for name in packageNames
-    api = require(name)
-    pkg = require(path.join(__dirname, '..', 'node_modules', name, 'package.json'))
+    initPackage(name)
 
-    paths = findPaths(api)
 
-    name = name.replace /^@activeprospect\//, ''
-    module.exports[name] = api;
+#
+# Private: initialize the named integration package
+#
+initPackage = (name) ->
+  api = require(name)
+  pkg = require(path.join(__dirname, '..', 'node_modules', name, 'package.json'))
 
-    packages[name] =
-      name: name
-      version: pkg.version
-      description: pkg.description
-      repo_url: pkg.repository.url
-      paths: paths
+  paths = findPaths(api)
 
-    for modulePath in paths
-      id = "#{name}.#{modulePath}"
-      integration = dotaccess.get(api, modulePath) ? api[modulePath]
-      register id, integration
+  name = name.replace /^@activeprospect\//, ''
+  module.exports[name] = api;
+
+  packages[name] =
+    name: api.name ? _.capitalize(name.replace('leadconduit-', ''))
+    version: pkg.version
+    description: pkg.description
+    repo_url: pkg.repository.url
+    paths: paths
+
+  for modulePath in paths
+    id = "#{name}.#{modulePath}"
+    integration = dotaccess.get(api, modulePath) ? api[modulePath]
+    register id, integration
+
 
 
 #
@@ -258,11 +266,13 @@ findPaths = (api, modulePath='') ->
   paths = []
 
   apiProperties = Object.keys(api)
-  if apiProperties.indexOf("request") != -1 or apiProperties.indexOf('handle') != -1
+  if apiProperties.indexOf('request') != -1 or apiProperties.indexOf('handle') != -1
     paths.push(modulePath)
   else
-    for key, module of api
-      paths = paths.concat(findPaths(module, [modulePath, key].filter(empty).join('.')))
+    for key, mod of api
+      # name is a special property for defining a friendly name for the package
+      continue if key == 'name'
+      paths = paths.concat(findPaths(mod, [modulePath, key].filter(empty).join('.')))
 
   paths
 
@@ -292,3 +302,4 @@ module.exports =
   maxTimeout: maxTimeout
   minTimeout: minTimeout
   ensureTimeout: ensureTimeout
+  initPackage: initPackage
