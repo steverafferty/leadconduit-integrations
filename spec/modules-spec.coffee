@@ -25,7 +25,7 @@ describe 'Modules', ->
 
   it 'should use derived package name', ->
     module = integrations.modules['leadconduit-default.inbound']
-    assert.equal module.package.name, 'Default'
+    assert.equal module.package.name, 'LeadConduit'
 
   it 'should use specified package name', ->
     integration = require('leadconduit-default')
