@@ -19,12 +19,12 @@
   "dependencies": {
     "@activeprospect/leadconduit-360": "2",
     "@activeprospect/leadconduit-adt": "^0.0.1",
+    "@activeprospect/leadconduit-billsdotcom": "^1.0.0",
     "@activeprospect/leadconduit-buyerzone": "^1.10.0",
     "@activeprospect/leadconduit-lendio": "^3.1.0",
     "dotaccess": "^1.0.5",
     "leadconduit-autoresponder": "^0.1.0",
     "leadconduit-batchrobot": "~0.0.2",
-    "leadconduit-billsdotcom": "^1.0.0",
     "leadconduit-briteverify": "^0.4.0",
     "leadconduit-cake": "~0.0.2",
     "leadconduit-calq": "~0.0.1",
