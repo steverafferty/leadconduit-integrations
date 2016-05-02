@@ -2,7 +2,7 @@
   "name": "@activeprospect/leadconduit-integrations",
   "description": "The integrations supported by LeadConduit",
   "author": "Alex Wolfe <alex@activeprospect.com>",
-  "version": "2.52.0",
+  "version": "2.52.2",
   "main": "index.js",
   "scripts": {
     "test": "cake test",
@@ -19,6 +19,7 @@
   "dependencies": {
     "@activeprospect/leadconduit-360": "2",
     "@activeprospect/leadconduit-adt": "^0.0.1",
+    "@activeprospect/leadconduit-billsdotcom": "^1.0.0",
     "@activeprospect/leadconduit-buyerzone": "^1.10.0",
     "@activeprospect/leadconduit-calq": "^0.1.0",
     "@activeprospect/leadconduit-autoresponder": "^0.2.0",
