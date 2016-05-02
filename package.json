@@ -2,7 +2,7 @@
   "name": "@activeprospect/leadconduit-integrations",
   "description": "The integrations supported by LeadConduit",
   "author": "Alex Wolfe <alex@activeprospect.com>",
-  "version": "2.52.2",
+  "version": "3.0.0",
   "main": "index.js",
   "scripts": {
     "test": "cake test",
@@ -23,7 +23,6 @@
     "@activeprospect/leadconduit-buyerzone": "^1.10.0",
     "@activeprospect/leadconduit-calq": "^0.1.0",
     "@activeprospect/leadconduit-autoresponder": "^0.2.0",
-    "@activeprospect/leadconduit-billsdotcom": "^1.0.0",
     "@activeprospect/leadconduit-briteverify": "^0.4.0",
     "@activeprospect/leadconduit-cake": "~0.0.2",
     "@activeprospect/leadconduit-cashcall": "~0.0.1",
