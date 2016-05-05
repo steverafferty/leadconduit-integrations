@@ -33,6 +33,7 @@
     "@activeprospect/leadconduit-email-delivery": "^0.1.0",
     "@activeprospect/leadconduit-experian": "^1.3.0",
     "@activeprospect/leadconduit-facebook": "~0.0.1",
+    "@activeprospect/leadconduit-fullcontact": "~0.0.1",
     "@activeprospect/leadconduit-highrise": "^0.1.0",
     "@activeprospect/leadconduit-homesdotcom": "~0.1.0",
     "@activeprospect/leadconduit-hubspot": "~0.0.4",
