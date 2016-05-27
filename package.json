@@ -53,7 +53,7 @@
     "@activeprospect/leadconduit-salesforce": "~0.0.1",
     "@activeprospect/leadconduit-sendgrid": "^1.2.0",
     "@activeprospect/leadconduit-telesign": "^1.2.0",
-    "@activeprospect/leadconduit-towerdata": "^1.0.0",
+    "@activeprospect/leadconduit-towerdata": "^2.0.0",
     "@activeprospect/leadconduit-twilio": "~0.0.1",
     "@activeprospect/leadconduit-twitter": "~0.0.1",
     "@activeprospect/leadconduit-velocify": "^0.1",
