@@ -21,7 +21,7 @@
     "@activeprospect/leadconduit-adt": "^0.0.1",
     "@activeprospect/leadconduit-autoresponder": "^0.2.0",
     "@activeprospect/leadconduit-billsdotcom": "^1.0.0",
-    "@activeprospect/leadconduit-briteverify": "^0.4.0",
+    "@activeprospect/leadconduit-briteverify": "^0.5.0",
     "@activeprospect/leadconduit-buyerzone": "^1.10.0",
     "@activeprospect/leadconduit-cake": "~0.0.2",
     "@activeprospect/leadconduit-calq": "^0.1.0",
