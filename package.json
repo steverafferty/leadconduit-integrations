@@ -70,6 +70,7 @@
     "leadconduit-default": "^2.1.0",
     "leadconduit-fields": "^2.1.1",
     "leadconduit-pixeltracker": "~0.0.1",
+    "leadconduit-standard": "~0.0.1",
     "leadconduit-suppressionlist": "^1.0.0",
     "leadconduit-trustedform": "^1.0.0",
     "lodash": "^3.2.0",
