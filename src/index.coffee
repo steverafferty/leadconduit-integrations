@@ -64,8 +64,8 @@ initPackage = (name) ->
 register = (id, integration) ->
   generateModule(id, integration)
   generateHandle(integration)
-  generateTypes(integration)
-  generateAppendPrefix(integration)
+  generateTypes(id, integration)
+  generateAppendPrefix(id, integration)
   integrations[id] = integration
   integration
 
@@ -193,15 +193,16 @@ generateHandle = (outbound) ->
 #
 # Private: Generate the requestTypes and responseTypes properties on the integration
 #
-generateTypes = (integration) ->
-  integration.requestTypes ?= getRequestTypes(integration)
-  integration.responseTypes ?= getResponseTypes(integration)
+generateTypes = (id, integration) ->
+  module = modules[id]
+  integration.requestTypes ?= getRequestTypes(module)
+  integration.responseTypes ?= getResponseTypes(module)
 
-getRequestTypes = (integration) ->
-  getTypes(getRequestVariables(integration))
+getRequestTypes = (module) ->
+  getTypes(module.request_variables)
 
-getResponseTypes = (integration) ->
-  getTypes(getResponseVariables(integration))
+getResponseTypes = (module) ->
+  getTypes(module.response_variables)
 
 getTypes = (variables) ->
   mapType = (types, v) ->
@@ -213,26 +214,14 @@ getTypes = (variables) ->
 getDefaultType = (varName) ->
   fields.getType(varName) ? 'string'
 
-getRequestVariables = (integration) ->
-  if typeof integration.requestVariables == 'function'
-    integration.requestVariables?()
-  else if typeof integration.request == 'function'
-    integration.request.variables?()
-
-
-getResponseVariables = (integration) ->
-  if typeof integration.responseVariables == 'function'
-    integration.responseVariables?()
-  else if typeof integration.response == 'function'
-    integration.response.variables?()
 
 
 #
 # Private: resolve the prefix where an integration's outcome key will live
 #
-generateAppendPrefix = (integration) ->
+generateAppendPrefix = (id, integration) ->
   outcomeRegex = /\.?outcome$/
-  outcomeVar = _.find getResponseVariables(integration), (v) ->
+  outcomeVar = _.find modules[id].response_variables, (v) ->
     v.name?.match(outcomeRegex)
   if outcomeVar?.name?
     integration.appendPrefix = outcomeVar.name.replace(outcomeRegex, '')
