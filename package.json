@@ -37,6 +37,7 @@
     "@activeprospect/leadconduit-fullcontact": "~0.0.1",
     "@activeprospect/leadconduit-google": "~0.0.2",
     "@activeprospect/leadconduit-highrise": "^0.1.0",
+    "@activeprospect/leadconduit-homeadvisor": "~0.0.1",
     "@activeprospect/leadconduit-homesdotcom": "~0.1.0",
     "@activeprospect/leadconduit-hubspot": "~0.0.4",
     "@activeprospect/leadconduit-leadid": "~0.1.0",
