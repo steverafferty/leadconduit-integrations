@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cake test",
-    "prepublish": "cake build"
+    "prepublish": "cake build",
+    "generateguide": "cat docs/[0-9]*.md > guide.md; doctoc guide.md"
   },
   "license": "CC-BY-NC-ND-4.0",
   "repository": {
@@ -84,6 +85,7 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "coffee-script": "^1.8.0",
+    "doctoc": "^1.2.0",
     "leadconduit-cakefile": "^0.1.1",
     "leadconduit-types": "^4.5.0",
     "nock": "^5.2.1"
