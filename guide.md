@@ -43,13 +43,11 @@ This guide should tell you everything you need to know to develop LeadConduit in
 - [4. Development Guide](#4-development-guide)
   - [Getting Started](#getting-started)
   - [Development Environment](#development-environment)
-    - [Logging in to npm](#logging-in-to-npm)
   - [Style Guide](#style-guide)
   - [Test Coverage](#test-coverage)
   - [Linting](#linting)
   - [Documentation](#documentation)
   - [Development Cycle](#development-cycle)
-  - [Running LeadConduit Locally](#running-leadconduit-locally)
   - [Tips, Idioms, & Links](#tips-idioms--links)
     - [Useful references](#useful-references)
     - [Guard against null with '`?.`'](#guard-against-null-with-)
@@ -58,6 +56,9 @@ This guide should tell you everything you need to know to develop LeadConduit in
     - [Use CoffeeScript's `for…of` to iterate object properties](#use-coffeescripts-forof-to-iterate-object-properties)
     - ["Mask" sensitive data](#mask-sensitive-data)
 - [5. Administration Guide](#5-administration-guide)
+  - [Logging in to npm](#logging-in-to-npm)
+  - [Setting up Travis CI for a new integration](#setting-up-travis-ci-for-a-new-integration)
+  - [Running LeadConduit Locally](#running-leadconduit-locally)
   - [Version Numbers](#version-numbers)
   - [Cutting a Release with `cut-release`](#cutting-a-release-with-cut-release)
   - [Deploying a New or Updated Integration](#deploying-a-new-or-updated-integration)
@@ -97,8 +98,6 @@ Once a lead has been accepted in the flow, it proceeds to the remaining predefin
 The other type of step that can be added to a flow are **filter** steps, which define criteria to stop processing and reject a lead. These are similar to the acceptance criteria mentioned previously, but they apply to leads from _all_ sources, and they can be placed after recipient steps. That means that their rules can also use appended data. For example, after a recipient step that sends the lead’s email address to an email-verification service, there would probably be a filter step immediately following it, with a rule such as, “if the email-verification service responded that this email is fraudulent, then stop processing now”.
 
 After all the defined steps have been executed, or if a filter evaluation results in early termination of the flow, a response is returned to the original source of the lead. The format of that response is determined by the inbound integration, but generally includes LeadConduit’s unique lead ID and some indication of overall success (i.e., a good, accepted lead) or failure (a bad, rejected lead). The duration of this process for each lead varies, depending on the number of steps and the responsiveness of external services, but is typically only a second or two.
-
-_todo: add an example_
 
 ## How It Does It
 
@@ -168,7 +167,7 @@ And here is an example of an _invalid_ `phone`-type field:
 }
 ```
 
-_todo: link to or add full field docs. [ref docs](http://docs.activeprospect.com/leadconduit/reference.html) seem insufficient (and out of date; missing `gender` at least) currently_
+See also: full field documentation in the [LeadConduit reference](http://docs.activeprospect.com/leadconduit/reference.html).
 
 
 ## Inbound vs. Outbound Integrations 
@@ -246,11 +245,7 @@ Examples:
 In the case where an outbound integration doesn’t have all the data it requires, it will cause that step to be “skipped”. This behavior is implemented by a function called `validate()`, described in full detail in the Integration API chapter. In this case, no request is even attempted to the recipient, since it could not possibly result in success.
 
 Note that skip outcomes can also occur if the step has "step criteria" configured via the flow UI. For example, a customer could specify that an expensive data-verification service should not be used for leads provided from their own website (with a rule such as, "send to this recipient only if 'Source' is not equal to 'My Website'"). In a situation like that, the handler never invokes the integration in any way.
-
-
 # 3. The Integration API
-
-_todo: improve inbound integration docs, i.e., fix multiple sections below to not assume outbound_
 
 ## Module Introduction
 
@@ -366,7 +361,7 @@ Note that the `required` attribute is used _only_ by the UI. Enforcing that “r
 
 Though the `type` value does not affect the UI, it is used by the lead-handler, which creates an instance of the specified type for each variable before invoking `request()` (or `handle()`). 
 
-However, aspecific “rich” type (see Key Concepts section on "Field Types") should only be used when it’s really needed; use the `string` type wherever possible. This avoids subtle bugs and unexpected behavior caused by the lead-handler’s automatic typecasting. If the integration needs to check `.valid`, or access other object attributes (e.g., `.area` or `.exchange`), then list it as `type: 'phone'`. Otherwise the integration will ask for a string, and LeadConduit will provide it that way. When a rich type is specified, care must be taken to “stringify” the value as necessary with the `.valueOf()` function.
+However, a specific “rich” type (see Key Concepts section on "Field Types") should only be used when it’s really needed; use the `string` type wherever possible. This avoids subtle bugs and unexpected behavior caused by the lead-handler’s automatic typecasting. If the integration needs to check `.valid`, or access other object attributes (e.g., `.area` or `.exchange`), then list it as `type: 'phone'`. Otherwise the integration will ask for a string, and LeadConduit will provide it that way. When a rich type is specified, care must be taken to “stringify” the value as necessary with the `.valueOf()` function.
 
 Using rich types also requires extra care in test code; see details about testing in the Author’s Guide section.
 
@@ -457,9 +452,7 @@ For example: consider a phone-verification service. If there is no phone data pr
 
 The `validate()` function takes a single parameter, `vars` (see above), and returns either nothing (technically, `undefined`), if the required lead data is present, or a string “skip” message if not. That message will be set as the `reason` text for this integration’s step, so as discussed previously, it should not include lead-specific data (see the “response()” section, above).
 
-Ideally this error text should be consistent with the same errors in other integrations. For example, the standard validate message for a missing email, used in many integrations, is “email must not be blank”. 
-
-_todo: provide more guidance on messages. examples, maybe a list?_
+This error text should also be consistent with similar errors in other integrations. For example, the standard validate message for a missing email, used in many integrations, is “email must not be blank”.
 
 Note that the `required` attribute on request variables, by itself, does nothing to the behavior of the integration (see “request.variables()” above). However, that metadata should match what variables the `validate()` function checks for. There is no automatic enforcement for these to match; they must be kept in sync by the developer.
 
@@ -468,11 +461,11 @@ Another type of exit is possible from `validate()`, which should be used when re
 
 ## `envVariables`
 
-Sometimes there is key integration data that is static, but should not be hardcoded in the integration itself. For example, API keys for resold services. These values should be treated as passwords, and therefore aren’t appropriate to be kept in source code, even in a private Github repo. These are set in the system [environment variables](https://en.wikipedia.org/wiki/Environment_variable) and accessed via `process.env`; an example can be seen in integrations such as BriteVerify, Clearbit, and ZipCodes.com. 
+Sometimes there is key integration data that is static, but should not be hardcoded in the integration itself, such as API keys for resold services. These values should be treated like passwords, and therefore aren’t appropriate to be kept in source code, even in a private Github repo. Instead, they're set in system [environment variables](https://en.wikipedia.org/wiki/Environment_variable) and accessed via `process.env`; an example can be seen in integrations such as BriteVerify, Clearbit, and ZipCodes.com.
 
 When an integration requires a value from the process environment, another item should be exported by the integration: `envVariables`. This is an array of strings, containing the names of any environment variables the integration needs. This is used to ensure that the app isn’t deployed without required environment vars.
 
-When an integration with new environment variables is first deployed (to staging, and separately, to production), these values will have to be configured in the server environment. Contact a senior LeadConduit developer to help set this up.
+When an integration with new environment variables is first deployed (to staging, and separately, to production), these values will have to be configured in the server environment. A member of the LeadConduit development team with server access can set this up for you.
 
 See the section on `validate()` for the best practices on validating that required environment variables are present. 
 # 4. Development Guide
@@ -485,22 +478,12 @@ Tools to help get started are still in development. For now, it's common when bu
 
 LeadConduit integrations are Node.js modules, typically written in CoffeeScript. To work on them, your development environment will need to include: 
 
-- [Node.js](https://nodejs.org/en/) - latest 4.x, but note that we use `npm` 2.x, not the newer version included with Node by default
+- [Node.js](https://nodejs.org/en/) - latest 6.x, but note that we use `npm` 2.x, not the newer version included with Node by default
 - [CoffeeScript](http://coffeescript.org/) - latest 1.x
 
-Internal ActiveProspect developers also need access to our private accounts at Github.com and npmjs.com. 
+Internal ActiveProspect developers also need access to our private accounts at Github.com and npmjs.com; see the Administration Guide.
 
-### Logging in to npm 
-
-When correctly logged in, you should get `activeprospect` as the response when you run `npm whoami`. You should also be able to successfully run, e.g., `npm install @activeprospect/leadconduit-briteverify`. 
-
-To log in, run `npm adduser`, and answer the prompts: 
-
-```
-Username: activeprospect
-Password: _ask a teammate_
-Email: (this IS public) dev@activeprospect.com
-```
+If you're working on a new integration and you prefer plain JavaScript, you don't have to use CoffeeScript.
 
 ## Style Guide 
 
@@ -509,39 +492,39 @@ As with any style guide, consider these conventions as rules of thumb. The consi
 The following are not in priority order, but are numbered for reference.
 
 1. general guidelines
-	1. Keep code clear, readable, and concise
-	2. Names of functions, variables, etc. are camelCased (e.g., `parseCreditRate()`)
-	3. Names of lead and mapped parameters are snake_cased (e.g., `vars.credit_rate`)
-	5. Use local variables to reduce repetition of long data-structure paths (e.g., `custLoan = vars.lead.customer.loan.information.data`)
-	2. Prefer CoffeeScript-style interpolation (`"#{last_name}, #{first_name}"`) over JavaScript-style concatenation (`last_name + ", " + first_name`)
-	3. Handle simple logic in the template (e.g., to ensure empty string: `"#{vars.lead.postal_code or ''}"`)
-	6. In tests, use nested `describe()` statements to logically organize test cases
+  1. Keep code clear, readable, and concise
+  2. Names of functions, variables, etc. are camelCased (e.g., `parseCreditRate()`)
+  3. Names of lead and mapped parameters are snake_cased (e.g., `vars.credit_rate`)
+  5. Use local variables to reduce repetition of long data-structure paths (e.g., `custLoan = vars.lead.customer.loan.information.data`)
+  2. Prefer CoffeeScript-style interpolation (`"#{last_name}, #{first_name}"`) over JavaScript-style concatenation (`last_name + ", " + first_name`)
+  3. Handle simple logic in the template (e.g., to ensure empty string: `"#{vars.lead.postal_code or ''}"`)
+  6. In tests, use nested `describe()` statements to logically organize test cases
 
 2. module review checklist
-	1. a freshly cloned repo should be able to have `npm install`, `npm test`, and `npm lint` run successfully with no errors
-	2. `package.json` should have correct `name`, `description`, etc.
-	3. `package.json` should have no unnecessary packages as `dependencies` or `devDependencies`
-	4. `Readme.md` should have correct Travis badge code
-	5. `index.js` should list `export` integration names under the `outbound` (or `inbound`) namespace (or else the UI won’t correctly show the endpoint names in dropdowns)
-	6. `CHANGELOG.md` should exist and be updated for this change. Reference Github issue numbers if appropriate, and use the planned version number, even though it will not match `package.json` until `cut-release` is run
-	
-	7. integration source should have:
-		4. no unnecessary `require`s
-		8. no API keys, etc. hardcoded anywhere source 
-		9. no stray, unused “helper” functions
-		10. no unnecessary `export`s 
-		11. the correct `Accept` header on outbound requests integrations
-		12. no custom request variables, only standard
-		13. correct descriptions, types, and required flag on all request & response variables
-	
-	8. integration tests (see below) should:
-		15. have a validation test for each required request and `env` variable
-		16. have a validation test for when nothing is returned (i.e., no validation errors)
-		17. use the `leadconduit-integration.parse()` utility to create typed request variables 
-		18. use the `valueOf()` function to stringify rich-typed variables as needed
+  1. a freshly cloned repo should be able to have `npm install`, `npm test`, and `npm lint` run successfully with no errors
+  2. `package.json` should have correct `name`, `description`, etc.
+  3. `package.json` should have no unnecessary packages as `dependencies` or `devDependencies`
+  4. `Readme.md` should have correct Travis badge code
+  5. `index.js` should list `export` integration names under the `outbound` (or `inbound`) namespace (or else the UI won’t correctly show the endpoint names in dropdowns)
+  6. `CHANGELOG.md` should exist and be updated for this change. Reference Github issue numbers if appropriate, and use the planned version number, even though it will not match `package.json` until `cut-release` is run
+  
+  7. integration source should have:
+    4. no unnecessary `require`s
+    8. no API keys, etc. hardcoded anywhere source 
+    9. no stray, unused “helper” functions
+    10. no unnecessary `export`s 
+    11. the correct `Accept` header on outbound requests integrations
+    12. no custom request variables, only standard
+    13. correct descriptions, types, and required flag on all request & response variables
+  
+  8. integration tests (see below) should:
+    15. have a validation test for each required request and `env` variable
+    16. have a validation test for when nothing is returned (i.e., no validation errors)
+    17. use the `leadconduit-integration.parse()` utility to create typed request variables 
+    18. use the `valueOf()` function to stringify rich-typed variables as needed
 
-	9. brand-new integrations should:
-		1. include a large, high-quality PNG for the logo (not in the repo, but provided in some way with the initial review)
+  9. brand-new integrations should:
+    1. include a large, high-quality PNG for the logo (not in the repo, but provided in some way with the initial review)
 
 ## Test Coverage
 
@@ -553,17 +536,11 @@ Tests can be run locally by running `npm test` (or the alias `cake test`) at the
 
 Our [continuous-integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration) process uses [Travis](https://travis-ci.com/). Each git branch should be set up to be automatically built. Within an integration repo, this is controlled by the `.travis.yml` file (note that it begins with a dot, and so may be hidden in some filesystem views), as well as the `scripts.test` value defined in `package.json`.
 
-When adding a brand-new integration, there is a one-time setup to do to configure Travis to run on each commit: 
-
-1. go to the [ActiveProspect profile](https://travis-ci.com/profile/activeprospect)
-2. find your new github repo on the list (you may need to click the "sync account" button)
-3. click the repository switch to turn it on
-
-The next commit that's pushed to the repo should trigger a build.
+When adding a brand-new integration, there is a one-time setup to do to configure Travis to run on each commit; see the Administration Guide.
 
 ## Linting
 
-A newer part of our standards is running the CoffeeScript [linter](https://en.wikipedia.org/wiki/Lint_(software)) on your code. This helps enforce coding styles, described in more detail below. This hasn't yet been added to our CI process yet, but should be run by authors prior to submitting PRs.
+A newer part of our standards is running the CoffeeScript [linter](https://en.wikipedia.org/wiki/Lint_(software)) on your code. This helps enforce coding styles, described in more detail below. This hasn't yet been added to our CI process, but should be run by authors prior to submitting PRs.
 
 If many changes are suggested by the linter, as may be the case with older integrations, those changes should ideally be kept in a commit that's separate from the "real" (e.g., bug-fix) changes.
 
@@ -575,31 +552,21 @@ Markdown documentation that describes the functionality of the integration shoul
 
 ## Development Cycle
 
-When working on a brand new module, first create a new, empty repo with a single empty file on the `master` branch: `Readme.md` (it can have a single empty line). Then add your new code in another branch, so that the merge PR will show it all as "new". That way, it's easy to comment on and discuss during the PR review process. 
+When working on a brand new module, internal ActiveProspect developers will create a repo in the ActiveProspect Github organization. If you're an external developer, you can use whatever git-based source control you like. In either case, start by creating a new repo with just one file on the `master` branch: a `Readme.md` with a single empty line. Then add your new code in another branch, so that the merge PR will show it all as new code. That way, it's easy to comment on and discuss during the PR review process.
 
-0. Create a feature (non-`master`) branch for your changes. If you're not in the ActiveProspect Github organization, create or fork the repo you're going to work on
+0. Create a feature (non-`master`) branch for your changes. If you're not in the ActiveProspect Github organization, fork the repo first as necessary.
 1. Make as many commits as you want while you do your work
 2. Don't increment the module's version number; that will be done later (new integrations start at "0.0.0")
-2. Push your branch to github when you're ready to have it reviewed
+2. Push your branch to Github when you're ready to have it reviewed
 3. Travis should be set up to run this module's tests (see "Test Coverage" above), and all tests should pass before you create a PR
 4. Create the PR
-	1. use a short but meaningful name
-	2. add any further explanation needed (for bug-fixes, reference the issue number)
-	3. assign the PR to a single more-senior developer for review. If you're not sure who is able to or has time to review it, ask.
+    1. use a short but meaningful name
+    2. add any further explanation needed (for bug-fixes, reference the issue number)
+    3. assign the PR to a single more-senior developer for review. If you're not sure who is able to or has time to review it, ask.
 5. Make changes as needed per PR feedback, iterating until the PR is approved
 6. Squash your commits as needed, down to semantically useful chunks of work. That may be a single commit, or it may be multiple, per your judgment (see [this blog post](http://eli.thegreenplace.net/2014/02/19/squashing-github-pull-requests-into-a-single-commit) for more information)
 7. Merge your PR
-8. The next step is to cut a new release of the module; see "Cutting a Release" in the Administration Guide chapter
-
-## Running LeadConduit Locally 
-
-_todo: add full details, incl. `leadconduit-deploy`_ 
-
-* before npm-publishing, you can hack it locally using `npm link` 
-* in the new integration directory (make sure `package.json` has the right name info), run `npm link`
-* in `leadconduit-integrations`, run `npm link @activeprospect/leadconduit-whatever`
-* in the local handler & API , npm link in `leadconduit-integrations`
-
+8. The next step is to cut a new release of the module, as covered in "Cutting a Release" in the Administration Guide chapter
 
 ## Tips, Idioms, & Links
 
@@ -701,7 +668,40 @@ it 'should mask the API key', ->
 
 # 5. Administration Guide
 
-This section covers administration of integration modules, separate from developing them. This includes deployment as well as ActiveProspect review of 3rd-party contributions. 
+Some integration development and administration tasks can only be performed by ActiveProspect, Inc. personnel. These include cutting releases, adding new integrations to the platform, and deployments.
+
+_Note: although this guide is currently published publicly, if you're outside the ActiveProspect organization, the information in this section isn't of use to you, and can be ignored._
+
+## Logging in to npm
+
+ When correctly logged in, you should get `activeprospect` as the response when you run `npm whoami`. You should also be able to successfully run, e.g., `npm install @activeprospect/leadconduit-briteverify`.
+
+ To log in, run `npm adduser`, and answer the prompts:
+
+ ```
+ Username: activeprospect
+ Password: _ask a teammate_
+ Email: (this IS public) dev@activeprospect.com
+ ```
+
+## Setting up Travis CI for a new integration
+
+When adding a brand-new integration, there is a one-time setup to do to configure Travis to run on each commit:
+
+1. go to the [ActiveProspect profile](https://travis-ci.com/profile/activeprospect)
+2. find the new github repo on the list (you may need to click the "sync account" button)
+3. click the repository switch to turn it on
+
+The next commit that's pushed to the repo should trigger a build.
+
+## Running LeadConduit Locally
+
+* before npm-publishing, you can hack it locally using `npm link`
+* in the new integration directory (make sure `package.json` has the right name info), run `npm link`
+* in `leadconduit-integrations`, run `npm link @activeprospect/leadconduit-whatever`
+* in the local handler & API , npm link in `leadconduit-integrations`
+
+_todo: add full details, incl. `leadconduit-deploy`_
 
 ## Version Numbers
 
@@ -811,27 +811,27 @@ New integrations, especially those that are resold by ActiveProspect, may also n
 Working with release candidate code – i.e., a new version that shouldn't be included in a production deploy yet – is kind of a pain in the neck, so we don't usually bother if we don't have to. If you do have to, here's roughly how to do it:
 
 * in the integration being updated:
-	* update integration version to a level that _won’t_ be picked up by what’s specified in `leadconduit-integrations`’s current production `package.json`
-	* publish it as usual
-	* since the version is higher than `leadconduit-integrations` is looking for, regular deploys won’t pick up this new update
-	* _example: `leadconduit-integrations` listed “leadconduit-whatever”: “^1.0.0”. That would get any 1.x.x, so the integration has to update to “2.0.0” to not match_
+    * update integration version to a level that _won’t_ be picked up by what’s specified in `leadconduit-integrations`’s current production `package.json`
+    * publish it as usual
+    * since the version is higher than `leadconduit-integrations` is looking for, regular deploys won’t pick up this new update
+    * _example: `leadconduit-integrations` listed “leadconduit-whatever”: “^1.0.0”. That would get any 1.x.x, so the integration has to update to “2.0.0” to not match_
 * in `leadconduit-integrations`:
-	* ensure the integration dependency version for the "whatever" integration will include that new version (e.g., "^2.0.0")
-	* increment the version of this module (`leadconduit-integrations` itself) so that it won’t be picked up by what’s in production for `leadconduit-api`; publish as usual
-	* _example: to now pick up the new 2.0.0 version of the `leadconduit-whatever` integration, that dependency could be listed as “^2.0.0” here. The `leadconduit-integrations` module itself was “1.1.3”, suppose `leadconduit-api` specifies “~1.1.0”; then this has to update to “1.2.0”._
+    * ensure the integration dependency version for the "whatever" integration will include that new version (e.g., "^2.0.0")
+    * increment the version of this module (`leadconduit-integrations` itself) so that it won’t be picked up by what’s in production for `leadconduit-api`; publish as usual
+    * _example: to now pick up the new 2.0.0 version of the `leadconduit-whatever` integration, that dependency could be listed as “^2.0.0” here. The `leadconduit-integrations` module itself was “1.1.3”, suppose `leadconduit-api` specifies “~1.1.0”; then this has to update to “1.2.0”._
 *  in `leadconduit-api`:
-	* ensure the version of the `leadconduit-integrations` dependency listed here will include new version set above
-	*  increment the version of this module (`leadconduit-api` itself), with an “-rc.1” suffix
-	*  commit & push, wait for Travis, cut-release as usual
-	*  _example: in the `leadconduit-api` package, the `leadconduit-integrations` dependency, previously “~1.1.0”, gets bumped to “~1.2.0” If this package’s own version were “1.8.3”, it would now become, say, “1.8.4-rc.1”._
+    * ensure the version of the `leadconduit-integrations` dependency listed here will include new version set above
+    *  increment the version of this module (`leadconduit-api` itself), with an “-rc.1” suffix
+    *  commit & push, wait for Travis, cut-release as usual
+    *  _example: in the `leadconduit-api` package, the `leadconduit-integrations` dependency, previously “~1.1.0”, gets bumped to “~1.2.0” If this package’s own version were “1.8.3”, it would now become, say, “1.8.4-rc.1”._
 * deploy to staging, specifying that “-rc.1” version
-	* if anyone does a production deploy in the meantime, the “-rc.x” versions won’t be picked up as “latest”, because semver omits those versions from consideration.
-	* _example: `staging leadconduit deploy --version=1.8.4-rc.1`_
+    * if anyone does a production deploy in the meantime, the “-rc.x” versions won’t be picked up as “latest”, because semver omits those versions from consideration.
+    * _example: `staging leadconduit deploy --version=1.8.4-rc.1`_
 * iterate & test as needed, incrementing the integration's version number along the way
-	* due to how the semver is set up, you probably won't need to cut a new release-candidate version of the parent API module during. Subsequent re-installations of "rc.1" will pick up the latest modules that match the semver.
-	* _example: a bug is found in the "whatever" integration, it it's fixed and republished as “2.0.1”. It can now be re-deployed with the whole app (with `--version=1.8.4-rc.1`) or with the simpler `staging leadconduit update` format (see above for details on deploying just an integration update)_
+    * due to how the semver is set up, you probably won't need to cut a new release-candidate version of the parent API module during. Subsequent re-installations of "rc.1" will pick up the latest modules that match the semver.
+    * _example: a bug is found in the "whatever" integration, it it's fixed and republished as “2.0.1”. It can now be re-deployed with the whole app (with `--version=1.8.4-rc.1`) or with the simpler `staging leadconduit update` format (see above for details on deploying just an integration update)_
 * after everything looks good and it's ready publish for real:
-	* remove the “-rc.1” from the `api` module and deploy as normal 
+    * remove the “-rc.1” from the `api` module and deploy as normal 
 
 
 ##  Reviewing 3rd-party Code 
@@ -848,16 +848,17 @@ In addition to the usual style and logic guidelines (see Development Guide), som
 
 ## Transferring 3rd-party Code
 
-If a 3rd party developer has created a module which they're willing to transfer to ActiveProspect for ongoing ownership and maintenance, here's a short list of steps that worked one time. 
+If an external or third-party developer has created a module which they're willing to transfer to ActiveProspect for ongoing ownership and maintenance, here's an abbreviated list of steps:
 
-1. invite an owner of the original repo to the “temp_admin” team (https://github.com/orgs/activeprospect/teams/temp_admin)
+1. invite an owner of the original repo to the [temp_admin team](https://github.com/orgs/activeprospect/teams/temp_admin)
 2. owner goes into repo settings, clicks “transfer this repo” button, confirms with repo and our org name
-3. remove that owner from temp_admin team
-
+3. remove that user from the `temp_admin` team
 
 # 6. Appendix A - Getting Started 
 
-_todo: set up something to help get started. Possibly an example module to use as a template; could also be a good reference, for things like validation and multiple endpoints etc. And could be referenced in these docs (instead of various private integrations, e.g., Towerdata)._
+_Coming soon_
+
+For now, the best way to get started is to use an existing integration module as a reference (or even duplicate it, and use it as a template). For example, [leadconduit-trustedform](https://github.com/activeprospect/leadconduit-integration-trustedform).
 
 
 
@@ -932,7 +933,6 @@ In other words, a module's `.travis.yml` should look like this (the numbers may 
 ```
 language: node_js
 node_js:
-  - 5
   - 6
   - node
 sudo: false
