@@ -20,6 +20,7 @@
   "dependencies": {
     "@activeprospect/leadconduit-360": "2",
     "@activeprospect/leadconduit-aarp": "~0.0.1",
+    "@activeprospect/leadconduit-activecampaign": "~0.0.1",
     "@activeprospect/leadconduit-adt": "^0.0.1",
     "@activeprospect/leadconduit-autoresponder": "^0.2.0",
     "@activeprospect/leadconduit-billsdotcom": "^1.0.0",
