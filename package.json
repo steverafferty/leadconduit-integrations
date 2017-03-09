@@ -68,6 +68,7 @@
     "@activeprospect/leadconduit-whitepages": "^0.4.0",
     "@activeprospect/leadconduit-zillow": "~0.0.3",
     "@activeprospect/leadconduit-zipcodes": "^0.2.0",
+    "@activeprospect/leadconduit-ccc": "~1.0.0",
     "dotaccess": "^1.0.5",
     "leadconduit-batch": "^0.1.0",
     "leadconduit-batchrobot": "~0.0.2",
