@@ -61,7 +61,7 @@
     "@activeprospect/leadconduit-sendgrid": "^1.2.0",
     "@activeprospect/leadconduit-telesign": "^1.2.0",
     "@activeprospect/leadconduit-towerdata": "^2.0.0",
-    "@activeprospect/leadconduit-twilio": "~0.0.1",
+    "@activeprospect/leadconduit-twilio": "~0.1.0",
     "@activeprospect/leadconduit-twitter": "~0.0.1",
     "@activeprospect/leadconduit-velocify": "^0.2.0",
     "@activeprospect/leadconduit-versium": "^0.2.0",
