@@ -52,6 +52,7 @@
     "@activeprospect/leadconduit-lendio": "^3.1.0",
     "@activeprospect/leadconduit-lowermybills": "^1.0.0",
     "@activeprospect/leadconduit-marketo": "~0.3.0",
+    "@activeprospect/leadconduit-mailchimp":"~0.0.1",
     "@activeprospect/leadconduit-militarydotcom": "~0.2.0",
     "@activeprospect/leadconduit-mortech": "^1.0.0",
     "@activeprospect/leadconduit-national-renewable-energy-lab": "^1.0.0",
