@@ -11,6 +11,7 @@ fields = require('leadconduit-fields')
 packages = {}
 modules = {}
 integrations = {}
+ui = {}
 maxTimeout = 360 # Same as the load balancer timeout
 minTimeout = 1
 
@@ -44,12 +45,19 @@ initPackage = (name) ->
   name = name.replace /^@activeprospect\//, ''
   module.exports[name] = api;
 
+  hasUi = typeof api.ui == 'function'
+
   packages[name] =
     name: api.name ? _.capitalize(name.replace('leadconduit-', ''))
     version: pkg.version
     description: pkg.description
     repo_url: pkg.repository.url
     paths: paths
+    ui: hasUi
+
+  ui[name] = api.ui if hasUi
+
+  ui[name] = api.ui if typeof api.ui == 'function'
 
   for modulePath in paths
     id = "#{name}.#{modulePath}"
@@ -259,8 +267,9 @@ findPaths = (api, modulePath='') ->
     paths.push(modulePath)
   else
     for key, mod of api
-      # name is a special property for defining a friendly name for the package
-      continue if key == 'name'
+      # 'name' is a special property for defining a friendly name for the package
+      # 'api' is a special property for defining API routes
+      continue if key == 'name' or key == 'ui'
       paths = paths.concat(findPaths(mod, [modulePath, key].filter(empty).join('.')))
 
   paths
@@ -285,6 +294,7 @@ module.exports =
   packages: packages
   modules: modules
   integrations: integrations
+  ui: ui
   register: register
   deregister: deregister
   lookup: lookup
