@@ -64,7 +64,6 @@
     "@activeprospect/leadconduit-telesign": "^1.2.0",
     "@activeprospect/leadconduit-towerdata": "^2.0.0",
     "@activeprospect/leadconduit-twilio": "~0.1.0",
-    "@activeprospect/leadconduit-twitter": "~0.0.1",
     "@activeprospect/leadconduit-unbounce": "~0.0.1",
     "@activeprospect/leadconduit-uniqlo": "~0.0.1",
     "@activeprospect/leadconduit-velocify": "^0.2.0",
