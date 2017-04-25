@@ -29,6 +29,7 @@
     "@activeprospect/leadconduit-buyerzone": "^1.10.0",
     "@activeprospect/leadconduit-cake": "^1.0.0",
     "@activeprospect/leadconduit-calq": "^1.0.0",
+    "@activeprospect/leadconduit-campaignmonitor": "~0.0.1",
     "@activeprospect/leadconduit-cashcall": "^0.1.0",
     "@activeprospect/leadconduit-ccc": "~1.0.0",
     "@activeprospect/leadconduit-clearbit": "^0.1.0",
