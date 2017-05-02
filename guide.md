@@ -288,12 +288,13 @@ The remainder of this section describes both styles, and how they're defined.
 
 ## `request()`
 
-This function takes a single parameter, `vars` (see below), and can access attributes of it as described in the `request.variables()` array (see below). It returns a JavaScript object that details how LeadConduit should make the HTTP call. That includes setting these attributes, as necessary: 
+This function takes a single parameter, `vars` (see below), and can access attributes of it as described in the `request.variables()` array (see below). It returns a JavaScript object that details how LeadConduit should make the HTTP call. That includes setting these attributes, as necessary:
 
 - `url` -- this is the full, valid URL of the service to send data to. This often includes data taken from the lead being processed. For example: `https://app.suppressionlist.com/exists/my_customers/hotlead@gmail.com`
 - `method` -- the HTTP method to use: “POST”, “GET”, etc.
 - `headers` -- an object with standard HTTP header attributes as key-value pairs. For example: `"Accept": "application/json"` 
 - `body` -- for POST-type requests, the URL-encoded data being sent. This also frequently includes data from the lead. For example: `reference=123&vendor=Ace%20Leads%2C%20Inc.`
+- `timeout` -- the number of seconds to time out after, if needed (the default timeout is 360 seconds)
 
 This JavaScript object is simply returned from `request()`, and then LeadConduit uses it to execute the HTTP transaction as described.
 
