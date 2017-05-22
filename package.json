@@ -34,6 +34,7 @@
     "@activeprospect/leadconduit-ccc": "~1.0.0",
     "@activeprospect/leadconduit-clearbit": "^0.1.0",
     "@activeprospect/leadconduit-closeio": "~0.1.0",
+    "@activeprospect/leadconduit-constantcontact": "~0.0.1",
     "@activeprospect/leadconduit-costco": "~0.0.1",
     "@activeprospect/leadconduit-datamyx": "^2.0.0",
     "@activeprospect/leadconduit-ebureau": "~0.0.1",
