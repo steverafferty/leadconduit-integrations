@@ -64,6 +64,7 @@
     "@activeprospect/leadconduit-powerbi": "~0.0.1",
     "@activeprospect/leadconduit-salesforce": "~0.0.1",
     "@activeprospect/leadconduit-sendgrid": "^1.2.0",
+    "@activeprospect/leadconduit-speak2leads": "~0.0.1",
     "@activeprospect/leadconduit-telesign": "^1.2.0",
     "@activeprospect/leadconduit-towerdata": "^2.0.0",
     "@activeprospect/leadconduit-twilio": "~0.1.0",
