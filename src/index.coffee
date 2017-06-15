@@ -45,14 +45,17 @@ initPackage = (name) ->
   name = name.replace /^@activeprospect\//, ''
   module.exports[name] = api;
 
+  hasUi = typeof api.ui == 'function'
+
   packages[name] =
     name: api.name ? _.capitalize(name.replace('leadconduit-', ''))
     version: pkg.version
     description: pkg.description
     repo_url: pkg.repository.url
     paths: paths
+    ui: hasUi
 
-  ui[name] = api.ui if typeof api.ui == 'function'
+  ui[name] = api.ui if hasUi
 
   for modulePath in paths
     id = "#{name}.#{modulePath}"
