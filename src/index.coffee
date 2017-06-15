@@ -57,8 +57,6 @@ initPackage = (name) ->
 
   ui[name] = api.ui if hasUi
 
-  ui[name] = api.ui if typeof api.ui == 'function'
-
   for modulePath in paths
     id = "#{name}.#{modulePath}"
     integration = dotaccess.get(api, modulePath) ? api[modulePath]
