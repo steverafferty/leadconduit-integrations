@@ -54,7 +54,7 @@
     "@activeprospect/leadconduit-lendingtree": "^2.0.0",
     "@activeprospect/leadconduit-lendio": "^3.1.0",
     "@activeprospect/leadconduit-lowermybills": "^1.0.0",
-    "@activeprospect/leadconduit-marketo": "~0.3.0",
+    "@activeprospect/leadconduit-marketo": "prerelease",
     "@activeprospect/leadconduit-mailchimp": "prerelease",
     "@activeprospect/leadconduit-militarydotcom": "~0.2.0",
     "@activeprospect/leadconduit-mortech": "^1.0.0",
