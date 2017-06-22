@@ -2,7 +2,7 @@
   "name": "@activeprospect/leadconduit-integrations",
   "description": "The integrations supported by LeadConduit",
   "author": "Alex Wolfe <alex@activeprospect.com>",
-  "version": "3.21.0-rc.3",
+  "version": "3.21.0-rc.4",
   "main": "index.js",
   "scripts": {
     "test": "cake test",
@@ -47,7 +47,7 @@
     "@activeprospect/leadconduit-highrise": "^0.1.0",
     "@activeprospect/leadconduit-homeadvisor": "~0.0.1",
     "@activeprospect/leadconduit-homesdotcom": "~0.1.0",
-    "@activeprospect/leadconduit-hubspot": "^1.0.0",
+    "@activeprospect/leadconduit-hubspot": "prerelease",
     "@activeprospect/leadconduit-kelloggs": "~0.0.2",
     "@activeprospect/leadconduit-leadid": "~0.1.0",
     "@activeprospect/leadconduit-leadperfection": "^0.2.0",
