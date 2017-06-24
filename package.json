@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@activeprospect/leadconduit-360": "2",
-    "@activeprospect/leadconduit-aarp": "^1.0.0",
+    "@activeprospect/leadconduit-aarp": "1.0.1",
     "@activeprospect/leadconduit-activecampaign": "prerelease",
     "@activeprospect/leadconduit-adt": "^0.0.1",
     "@activeprospect/leadconduit-autoresponder": "^0.2.0",
