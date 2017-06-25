@@ -89,7 +89,7 @@
     "leadconduit-fields": "^2.1.1",
     "leadconduit-pixeltracker": "~0.0.1",
     "leadconduit-standard": "^1.0.0",
-    "leadconduit-suppressionlist": "^1.0.0",
+    "leadconduit-suppressionlist": "prerelease",
     "leadconduit-trustedform": "^1.0.0",
     "lodash": "^3.2.0",
     "request": "^2.67.0",
