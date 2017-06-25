@@ -22,7 +22,7 @@
     "@activeprospect/leadconduit-aarp": "^1.0.0",
     "@activeprospect/leadconduit-activecampaign": "prerelease",
     "@activeprospect/leadconduit-adt": "^0.0.1",
-    "@activeprospect/leadconduit-aweber": "^0.0.1",
+    "@activeprospect/leadconduit-aweber": "prerelease",
     "@activeprospect/leadconduit-autoresponder": "^0.2.0",
     "@activeprospect/leadconduit-billsdotcom": "^1.0.0",
     "@activeprospect/leadconduit-briteverify": "^0.5.0",
