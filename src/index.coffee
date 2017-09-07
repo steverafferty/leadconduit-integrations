@@ -171,6 +171,10 @@ generateHandle = (outbound) ->
       # Ensure that timeout is set somewhere between minTimeout and maxTimeout and convert to milliseconds
       options.timeout = ensureTimeout(options.timeout ? vars.timeout_seconds) * 1000
 
+      # If the outbound integration accepts gzipped responses, then set the 'gzip' option to true
+      gzip = normalizeHeaders(outboundReq.headers || {})['Accept-Encoding']?.toLowerCase().indexOf('gzip') >= 0
+      options.gzip = gzip || false
+
       try
         request options, cb
       catch err
