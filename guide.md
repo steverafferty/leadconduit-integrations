@@ -508,7 +508,6 @@ The following are not in priority order, but are numbered for reference.
    4. `Readme.md` should have correct Travis badge code
    5. `index.js` should list `export` integration names under the `outbound` (or `inbound`) namespace (or else the UI won’t correctly show the endpoint names in dropdowns)
    6. `CHANGELOG.md` should exist and be updated for this change. Reference Github issue numbers if appropriate, and use the planned version number, even though it will not match `package.json` until `cut-release` is run
-
    7. integration source should have:
       4. no unnecessary `require`s
       8. no API keys, etc. hardcoded anywhere source
@@ -517,7 +516,6 @@ The following are not in priority order, but are numbered for reference.
       11. the correct `Accept` header on outbound requests integrations
       12. no custom request variables, only standard
       13. correct descriptions, types, and required flag on all request & response variables
-
    8. integration tests (see below) should:
       15. have a validation test for each required request and `env` variable
       16. have a validation test for when nothing is returned (i.e., no validation errors)
