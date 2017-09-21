@@ -339,7 +339,7 @@ Each item in the array is a JavaScript object with these attributes:
 - `name` -- the name that the variable will be referenced by. For example, `lead.postal_code`, or `list_names`
 - `type` -- the type of the variable, such as `string`, `phone`, etc. 
 - `required` -- a boolean value indicating whether this variable is required
-- `description` -- descriptive text explaining what the variable means, or is used for. Can also include details about default values, as appropriate.
+- `description` -- descriptive text explaining what the variable means, or is used for. Include details about default values as appropriate.
 
 Example: 
 
@@ -493,39 +493,39 @@ As with any style guide, consider these conventions as rules of thumb. The consi
 The following are not in priority order, but are numbered for reference.
 
 1. general guidelines
-  1. Keep code clear, readable, and concise
-  2. Names of functions, variables, etc. are camelCased (e.g., `parseCreditRate()`)
-  3. Names of lead and mapped parameters are snake_cased (e.g., `vars.credit_rate`)
-  5. Use local variables to reduce repetition of long data-structure paths (e.g., `custLoan = vars.lead.customer.loan.information.data`)
-  2. Prefer CoffeeScript-style interpolation (`"#{last_name}, #{first_name}"`) over JavaScript-style concatenation (`last_name + ", " + first_name`)
-  3. Handle simple logic in the template (e.g., to ensure empty string: `"#{vars.lead.postal_code or ''}"`)
-  6. In tests, use nested `describe()` statements to logically organize test cases
+   1. Keep code clear, readable, and concise
+   2. Names of functions, variables, etc. are camelCased (e.g., `parseCreditRate()`)
+   3. Names of lead and mapped parameters are snake_cased (e.g., `vars.credit_rate`)
+   5. Use local variables to reduce repetition of long data-structure paths (e.g., `custLoan = vars.lead.customer.loan.information.data`)
+   2. Prefer CoffeeScript-style interpolation (`"#{last_name}, #{first_name}"`) over JavaScript-style concatenation (`last_name + ", " + first_name`)
+   3. Handle simple logic in the template (e.g., to ensure empty string: `"#{vars.lead.postal_code or ''}"`)
+   6. In tests, use nested `describe()` statements to logically organize test cases
 
 2. module review checklist
-  1. a freshly cloned repo should be able to have `npm install`, `npm test`, and `npm lint` run successfully with no errors
-  2. `package.json` should have correct `name`, `description`, etc.
-  3. `package.json` should have no unnecessary packages as `dependencies` or `devDependencies`
-  4. `Readme.md` should have correct Travis badge code
-  5. `index.js` should list `export` integration names under the `outbound` (or `inbound`) namespace (or else the UI won’t correctly show the endpoint names in dropdowns)
-  6. `CHANGELOG.md` should exist and be updated for this change. Reference Github issue numbers if appropriate, and use the planned version number, even though it will not match `package.json` until `cut-release` is run
-  
-  7. integration source should have:
-    4. no unnecessary `require`s
-    8. no API keys, etc. hardcoded anywhere source 
-    9. no stray, unused “helper” functions
-    10. no unnecessary `export`s 
-    11. the correct `Accept` header on outbound requests integrations
-    12. no custom request variables, only standard
-    13. correct descriptions, types, and required flag on all request & response variables
-  
-  8. integration tests (see below) should:
-    15. have a validation test for each required request and `env` variable
-    16. have a validation test for when nothing is returned (i.e., no validation errors)
-    17. use the `leadconduit-integration.parse()` utility to create typed request variables 
-    18. use the `valueOf()` function to stringify rich-typed variables as needed
+   1. a freshly cloned repo should be able to have `npm install`, `npm test`, and `npm lint` run successfully with no errors
+   2. `package.json` should have correct `name`, `description`, etc.
+   3. `package.json` should have no unnecessary packages as `dependencies` or `devDependencies`
+   4. `Readme.md` should have correct Travis badge code
+   5. `index.js` should list `export` integration names under the `outbound` (or `inbound`) namespace (or else the UI won’t correctly show the endpoint names in dropdowns)
+   6. `CHANGELOG.md` should exist and be updated for this change. Reference Github issue numbers if appropriate, and use the planned version number, even though it will not match `package.json` until `cut-release` is run
 
-  9. brand-new integrations should:
-    1. include a large, high-quality PNG for the logo (not in the repo, but provided in some way with the initial review)
+   7. integration source should have:
+      4. no unnecessary `require`s
+      8. no API keys, etc. hardcoded anywhere source
+      9. no stray, unused “helper” functions
+      10. no unnecessary `export`s
+      11. the correct `Accept` header on outbound requests integrations
+      12. no custom request variables, only standard
+      13. correct descriptions, types, and required flag on all request & response variables
+
+   8. integration tests (see below) should:
+      15. have a validation test for each required request and `env` variable
+      16. have a validation test for when nothing is returned (i.e., no validation errors)
+      17. use the `leadconduit-integration.parse()` utility to create typed request variables
+      18. use the `valueOf()` function to stringify rich-typed variables as needed
+
+   9. brand-new integrations should:
+      1. include a large, high-quality PNG for the logo (not in the repo, but provided in some way with the initial review)
 
 ## Test Coverage
 
@@ -797,7 +797,7 @@ _todo: more details: staging vs production, automatic db sync, etc._
 
 #### Environment Variables
 
-If a module requires a new or updated environment variable (i.e., has exported the `envVariables` array), those are provided by the application config files `/etc/init/leadconduit-api.conf` and `/etc/init/leadconduit-handler.conf`. A senior developer or administrator can get those files updated for you. 
+If a module requires a new or updated environment variable (i.e., has exported the `envVariables` array), those are provided by the application config files `/etc/init/leadconduit-api.conf` and `/etc/init/leadconduit-handler.conf`. Those files are config-managed by ops personnel; notify them, allowing adequate time for them to process the request, when environment variable changes are needed.
 
 #### SSO Billing Information 
 
