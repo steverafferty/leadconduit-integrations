@@ -76,7 +76,7 @@
     "@activeprospect/leadconduit-unbounce": "^1.0.0",
     "@activeprospect/leadconduit-uniqlo": "~0.0.1",
     "@activeprospect/leadconduit-velocify": "^0.2.0",
-    "@activeprospect/leadconduit-versium": "^0.2.0",
+    "@activeprospect/leadconduit-versium": "^0.3.0",
     "@activeprospect/leadconduit-webbula": "^0.6.0",
     "@activeprospect/leadconduit-webform": "^1.0.0",
     "@activeprospect/leadconduit-whitepages": "^1.0.0",
