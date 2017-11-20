@@ -38,7 +38,7 @@ init = ->
 #
 initPackage = (name) ->
   api = require(name)
-  pkg = require(path.join(__dirname, '..', 'node_modules', name, 'package.json'))
+  pkg = require(path.join(require.resolve(name), '..', 'package.json'))
 
   paths = findPaths(api)
 
