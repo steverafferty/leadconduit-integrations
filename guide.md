@@ -66,10 +66,15 @@ This guide should tell you everything you need to know to develop LeadConduit in
     - [Deploying on Production](#deploying-on-production)
     - [Rolling back a deploy](#rolling-back-a-deploy)
     - [Additional Setup for New Integrations](#additional-setup-for-new-integrations)
-      - [Database Changes](#database-changes)
+      - [Entity Added or Updated](#entity-added-or-updated)
       - [Environment Variables](#environment-variables)
       - [SSO Billing Information](#sso-billing-information)
       - [User Interface Changes](#user-interface-changes)
+  - [Managing Entity Records](#managing-entity-records)
+      - [get existing entity record by name](#get-existing-entity-record-by-name)
+      - [get existing entity record by id](#get-existing-entity-record-by-id)
+      - [update an existing entity record](#update-an-existing-entity-record)
+      - [to create a new entity](#to-create-a-new-entity)
   - [Managing Release Candidates](#managing-release-candidates)
   - [Reviewing 3rd-party Code](#reviewing-3rd-party-code)
   - [Transferring 3rd-party Code](#transferring-3rd-party-code)
@@ -77,7 +82,6 @@ This guide should tell you everything you need to know to develop LeadConduit in
 - [7. Appendix B - Updated Conventions](#7-appendix-b---updated-conventions)
   - [Throw errors for missing environment variables](#throw-errors-for-missing-environment-variables)
   - [List environment variables in `envVariables()`](#list-environment-variables-in-envvariables)
-  - [Cakefile conversion](#cakefile-conversion)
   - [Add CHANGELOG.md](#add-changelogmd)
   - [Include `node` as a Travis build version](#include-node-as-a-travis-build-version)
 
@@ -281,8 +285,9 @@ module.exports = {
 
 The `index.js` file may also optionally export a `name` attribute for the module. In most cases this is unnecessary, as the name is automatically derived from the package name itself.
 
-Similarly, each integration within the module may optionally export a `name` value for that integration's endpoint. If not present, the name is inferred from that integration’s name. For example, the SuppressionList `query_item` integration, with no explicit `name` set, will be show up as “Query Item” in the UI.
+Similarly, each integration within the module may optionally export a `name` value for that integration's endpoint. If not present, the name is inferred from that integration’s name. For example, the SuppressionList `query_item` integration, with no explicit `name` set, will show up as “Query Item” in the UI.
 
+**Warning:** the word "name" is a reserved word. So don't name an integration `name`. For example, if a service supported lookup by either phone or name, you could not export `{ outbound: { name: require('./lib/name_svc') } }`.
 
 ## “request and response” vs. “handle”
 
@@ -579,7 +584,7 @@ When working on a brand new module, internal ActiveProspect developers will crea
 
 ## Tips, Idioms, & Links
 
-Following are some common things to know, keep in mind, or have handy for further reference.
+Following are some common things to know, keep in mind, or have handy for future reference.
 
 ### Useful references
 
@@ -780,28 +785,11 @@ The deploy commands can also be used to deploy older versions, i.e., to roll bac
 staging leadconduit update @activeprospect/leadconduit-whatever --version=0.0.6
 ```
 
-### Additional Setup for New Integrations 
+### Additional Setup for New Integrations
 
-#### Database Changes
+#### Entity Added or Updated
 
-For brand-new integration modules, there also needs to be a record inserted into the database for the new "entity". This is done by running something like this:
-
-```
-db.entities.insert({
-  "name": "Whatever",
-  "account_id": null,
-  "logo_url": "https://s3.amazonaws.com/integration-logos/whatever.png",
-  "source": null,
-  "recipient": "other",
-  "module_ids": ["leadconduit-whatever.outbound.delivery"]
-});
-```
-
-For modules which have had a new integration added, the `module_ids` array will need to be updated. 
-
-A senior developer or administrator can update these database records for you.
-
-_todo: more details: staging vs production, automatic db sync, etc._
+Integrations have corresponding records in the `entities` database collection. See the "Managing Entity Records" section below.
 
 #### Environment Variables
 
@@ -815,7 +803,91 @@ For integrations that will be resold by ActiveProspect – that is, integrations
 
 New integrations, especially those that are resold by ActiveProspect, may also need to have description and pricing information added to the LeadConduit UI. See [this client source file](https://github.com/activeprospect/leadconduit-client/blob/master/public/app/views/flows/edit/create/resoldServices.js), and contact a LeadConduit UI developer for help.
 
-## Managing Release Candidates 
+## Managing Entity Records
+
+Integrations have corresponding records in the `entities` database collection. Here's how to query, update, and create those.
+
+Some examples presume installation of [jq](https://stedolan.github.io/jq/). You'll also need the ActiveProspect API key, available from the "Account Settings" dialog on the [My Account](http://sso.dev/account) page in SSO. This is shown below as the environment variable `AP_API`; run `export AP_API=the_api_key_from_sso`  to set that, and these examples will work via copy & paste.
+
+Note that changes to production are reflected in snapshots that happen every hour, on the hour. Those snapshots are then used to re-seed staging on full deploy.
+
+#### get existing entity record by name
+
+```
+$ curl -X GET -uX:$AP_API -H 'Accept: application/json' https://next.leadconduit.com/entities | jq 'map(select(.name == "BriteVerify"))[0]'
+{
+  "id": "535e9f8c94149d05b5000001",
+  "name": "BriteVerify",
+  "source": null,
+  "recipient": "enhancement",
+  "logo_url": "https://s3.amazonaws.com/integration-logos/briteverify.png",
+  "module_ids": [
+    "leadconduit-briteverify.outbound.email",
+    "leadconduit-briteverify.outbound.name_verify"
+  ],
+  "website": "http://www.briteverify.com",
+  "standard": true
+}
+```
+
+#### get existing entity record by id
+
+If you already have the id, as you might from a previous query like the one above, you can query that directly.
+
+```
+curl -X GET -uX:$AP_API -H 'Accept: application/json' https://next.leadconduit.com/entities/535e9f8c94149d05b5000001 | jq '.'
+{
+  "id": "535e9f8c94149d05b5000001",
+  "name": "BriteVerify",
+  "source": null,
+  "recipient": "enhancement",
+  "logo_url": "https://s3.amazonaws.com/integration-logos/briteverify.png",
+  "module_ids": [
+    "leadconduit-briteverify.outbound.email",
+    "leadconduit-briteverify.outbound.name_verify"
+  ],
+  "website": "http://www.briteverify.com",
+  "standard": true
+}
+```
+
+#### update an existing entity record
+
+You could do this, for example, if you need to add a new endpoint to an existing integration.
+
+First, `GET` the existing data, as shown above. You could redirect it to a file by adding this to the end of the command: ` > entity.json`. Then that file can be edited as needed (e.g., to add another entry to the `module_ids` array). Using the `"id"` value from that `GET`, you can now `PUT` to update the record:
+
+```
+curl -X PUT -uX:$AP_API -H 'Accept: application/json' -d@entity.json https://next.leadconduit.com/entities/ID_VALUE_FROM_JSON ; echo
+```
+
+On success, the API will return the updated JSON for the entity record.
+
+#### to create a new entity
+
+Similar to the "update" above, start with a JSON file. Don't include an `"id"`; that will be assigned by the database on insert. Here's a template:
+
+```
+{
+  "name": "Zion Mainframe",
+  "source": null,
+  "recipient": "other",
+  "logo_url": "https://s3.amazonaws.com/integration-logos/zion.png",
+  "module_ids": [
+    "leadconduit-zion.outbound.broadcast"
+  ],
+  "standard": false
+}
+```
+
+Values:
+
+- for `source` (per [the schema](https://github.com/activeprospect/leadconduit-schema/blob/master/schema.json#L399)): "form", "seller", "other", or `null`
+- for `recipient` (per [the schema](https://github.com/activeprospect/leadconduit-schema/blob/master/schema.json#L400)): "buyer", "crm", "analytics", "enhancement", "esp", "other", or `null`
+- for `standard`: only set to `true` for "crm" or "other" recipients which could be used in a customer-configured "custom" delivery (e.g., Salesforce). also, to set this to "true", you have to use the API key of a specific superuser.
+
+
+## Managing Release Candidates
 
 Working with release candidate code – i.e., a new version that shouldn't be included in a production deploy yet – is kind of a pain in the neck, so we don't usually bother if we don't have to. If you do have to, here's roughly how to do it:
 
@@ -895,22 +967,6 @@ module.exports =
   envVariables: ['ZIPCODES_COM_API_KEY']
   ...
 ```
-
-## Cakefile conversion 
-
-Originally each module had its own copy of a full `Cakefile`, approximately 35 lines long. That has been replaced with a separate module: [`leadconduit-cakefile`](https://github.com/activeprospect/leadconduit-cakefile). The `Cakefile` still exists, but should have a single line: 
-
-```
-require('leadconduit-cakefile')(task)
-```
-
-To make this update (the BatchRobot integration can be referenced as an example): 
-
-1. add an entry for the current version of `leadconduit-cakefile` to the `devDependencies` section of `package.json`. this can be done by running: `npm install -D leadconduit-cakefile`.
-2. remove the entry for `mocha` from `devDependencies` (it is included in the `cakefile` module) and delete that module (e.g., `rm -fr node_modules/mocha/`) 
-3. replace the contents of `Cakefile` with the line above
-4. run `cake test` or `cake build` to verify everything's set up correctly 
-
 
 ## Add CHANGELOG.md
 
