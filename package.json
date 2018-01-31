@@ -80,7 +80,7 @@
     "@activeprospect/leadconduit-twitter": "~0.0.1",
     "@activeprospect/leadconduit-unbounce": "^1.0.0",
     "@activeprospect/leadconduit-uniqlo": "~0.0.1",
-    "@activeprospect/leadconduit-velocify": "^0.2.0",
+    "@activeprospect/leadconduit-velocify": "^1.0.0",
     "@activeprospect/leadconduit-versium": "^1.0.0",
     "@activeprospect/leadconduit-webbula": "^0.7.0",
     "@activeprospect/leadconduit-webform": "^1.0.0",
