@@ -89,7 +89,7 @@
     "@activeprospect/leadconduit-zoho": "^2.0.0",
     "dotaccess": "^1.0.5",
     "leadconduit-batch": "^0.1.0",
-    "leadconduit-classic": "~0.1.0",
+    "leadconduit-classic": "~0.2.0",
     "leadconduit-custom": "^2.0.0",
     "leadconduit-default": "^2.1.0",
     "leadconduit-fields": "^2.1.1",
