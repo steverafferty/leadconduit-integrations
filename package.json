@@ -27,7 +27,7 @@
     "@activeprospect/leadconduit-autoresponder": "^0.3.0",
     "@activeprospect/leadconduit-aweber": "^2.0.0",
     "@activeprospect/leadconduit-billsdotcom": "^1.0.0",
-    "@activeprospect/leadconduit-briteverify": "^0.6.0",
+    "@activeprospect/leadconduit-briteverify": "^0.6.5",
     "@activeprospect/leadconduit-buyer-zone": "~0.0.1",
     "@activeprospect/leadconduit-buyerzone": "^1.10.0",
     "@activeprospect/leadconduit-cake": "^1.0.0",
@@ -88,16 +88,18 @@
     "@activeprospect/leadconduit-zipcodes": "^0.2.0",
     "@activeprospect/leadconduit-zoho": "^2.0.0",
     "dotaccess": "^1.0.5",
+    "front-matter": "^2.3.0",
     "leadconduit-batch": "^0.1.0",
     "leadconduit-classic": "~0.2.0",
     "leadconduit-custom": "^2.0.0",
-    "leadconduit-default": "^2.1.0",
-    "leadconduit-fields": "^2.1.1",
+    "leadconduit-default": "^2.7.6",
+    "leadconduit-fields": "^2.25.1",
     "leadconduit-pixeltracker": "~0.0.1",
     "leadconduit-standard": "^1.0.0",
     "leadconduit-suppressionlist": "^2.0.2",
     "leadconduit-trustedform": "^1.0.0",
     "lodash": "^3.2.0",
+    "markdown-it": "^8.4.1",
     "request": "^2.67.0",
     "underscore.string": "^2.3.3"
   },
@@ -107,6 +109,7 @@
     "doctoc": "^1.2.0",
     "leadconduit-cakefile": "^0.1.1",
     "leadconduit-types": "^4.5.0",
+    "mocha": "^5.0.1",
     "nock": "^5.2.1"
   }
 }

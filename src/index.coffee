@@ -2,6 +2,9 @@ _ = require('lodash')
 dotaccess = require('dotaccess')
 string = require('underscore.string')
 path = require('path')
+fs = require('fs')
+frontmatter = require('front-matter')
+markdownIt = require('markdown-it')
 request = require('request')
 fields = require('leadconduit-fields')
 
@@ -25,6 +28,7 @@ init = ->
   packageNames = Object.keys(require(path.join(__dirname, '..', 'package.json')).dependencies).filter (name) ->
     name.match(/^leadconduit\-|^@activeprospect\/leadconduit\-/)  and name != 'leadconduit-fields'
 
+  @markdown = new markdownIt();
 
   #
   # Build the package, module, and integration metadata
@@ -33,12 +37,31 @@ init = ->
     initPackage(name)
 
 
+readMetadata = (basedir = '.', filebase) ->
+  metadata = {}
+  try
+    docs = frontmatter(fs.readFileSync(path.join(basedir, 'docs', "#{filebase}.md"), 'utf8'))
+    metadata = docs.attributes
+    metadata.description = @markdown.render(docs.body)
+  catch e
+    # missing docs/index.md is no problem; only log and set error data...
+    if e.code isnt 'ENOENT'
+      console.error e
+      metadata =
+        name: "Error loading name for #{filebase}"
+        description: "Error loading description for #{filebase}"
+
+  metadata
+
+
 #
 # Private: initialize the named integration package
 #
 initPackage = (name) ->
+  basedir = path.join(require.resolve(name), '..')
+
   api = require(name)
-  pkg = require(path.join(require.resolve(name), '..', 'package.json'))
+  pkg = require(path.join(basedir, 'package.json'))
 
   paths = findPaths(api)
 
@@ -47,10 +70,14 @@ initPackage = (name) ->
 
   hasUi = typeof api.ui == 'function'
 
+  metadata = readMetadata(basedir, 'index')
+
   packages[name] =
-    name: api.name ? _.capitalize(name.replace('leadconduit-', ''))
+    provider: metadata.provider
+    name: metadata.name or api.name or _.capitalize(name.replace('leadconduit-', ''))
+    description: metadata.description or pkg.description
+    link: metadata.link
     version: pkg.version
-    description: pkg.description
     repo_url: pkg.repository.url
     paths: paths
     ui: hasUi
@@ -60,15 +87,15 @@ initPackage = (name) ->
   for modulePath in paths
     id = "#{name}.#{modulePath}"
     integration = dotaccess.get(api, modulePath) ? api[modulePath]
-    register id, integration
+    register id, integration, basedir
 
 
 
 #
 # Public: Register an integration.
 #
-register = (id, integration) ->
-  generateModule(id, integration)
+register = (id, integration, basedir) ->
+  generateModule(id, integration, basedir)
   generateHandle(integration)
   generateTypes(id, integration)
   generateAppendPrefix(id, integration)
@@ -114,11 +141,14 @@ ensureTimeout = (timeout) ->
 #
 
 
-generateModule = (id, integration) ->
+generateModule = (id, integration, basedir) ->
   parts = id.split(/\./)
   name = parts.shift()
   modulePath = parts.join('.')
-  friendlyName = integration.name or generateName(modulePath)
+
+  metadata = readMetadata(basedir, modulePath)
+
+  friendlyName = metadata.name or integration.name or generateName(modulePath)
   type =
     if (modulePath.match(/inbound/))
       'inbound';
@@ -135,6 +165,10 @@ generateModule = (id, integration) ->
   modules[id] =
     id: id
     type: type
+    tag: metadata.tag
+    integration_type: metadata.integration_type
+    link: metadata.link
+    description: metadata.description
     package: packages[name]
     path: modulePath
     name: friendlyName
