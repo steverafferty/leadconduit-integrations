@@ -1,4 +1,5 @@
 _ = require('lodash')
+fs = require('fs')
 dotaccess = require('dotaccess')
 string = require('underscore.string')
 path = require('path')
@@ -63,6 +64,9 @@ initPackage = (name) ->
   api = require(name)
   pkg = require(path.join(basedir, 'package.json'))
 
+  imagesDir = path.join(basedir, 'lib', 'ui', 'public', 'images')
+  imagesDir = if fs.existsSync(imagesDir) then imagesDir else null
+
   paths = findPaths(api)
 
   name = name.replace /^@activeprospect\//, ''
@@ -81,6 +85,7 @@ initPackage = (name) ->
     repo_url: pkg.repository.url
     paths: paths
     ui: hasUi
+    imagesDir: imagesDir
 
   ui[name] = api.ui if hasUi
 
