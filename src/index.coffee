@@ -77,6 +77,7 @@ initPackage = (name) ->
   metadata = readMetadata(basedir, 'index')
 
   packages[name] =
+    id: name
     provider: metadata.provider
     name: metadata.name or api.name or _.capitalize(name.replace('leadconduit-', ''))
     description: metadata.description or pkg.description
