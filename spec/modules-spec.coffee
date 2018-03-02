@@ -51,7 +51,7 @@ describe 'Modules', ->
       assert.equal @module.package.provider, 'BriteVerify'
 
     it 'should have top-level module link', ->
-      assert.equal @module.package.link, 'http://www.briteverify.com/'
+      assert.equal @module.package.link, 'https://www.briteverify.com/'
 
     it 'should have top-level module description', ->
       assert.equal @module.package.description, '<p>Email verification platform to ensure addresses exist before sending emails.</p>\n'
@@ -63,10 +63,13 @@ describe 'Modules', ->
       assert.equal @module.tag, 'Email'
 
     it 'should have integration type', ->
-      assert.equal @module.integration_type, 'Enhancement'
+      assert.equal @module.integration_type, 'marketplace enhancement'
 
     it 'should have integration link', ->
-      assert.equal @module.link, 'http://www.briteverify.com/'
+      assert.equal @module.link, 'https://www.briteverify.com/'
 
     it 'should have integration description', ->
       assert.equal @module.description, '<p>Verify email before you send. BriteVerify can reduce your bounce rate by 98% and help your messages get delivered.</p>\n'
+
+    it 'should have imagesDir', ->
+      assert.include @module.package.imagesDir, 'lib/ui/public/images'
