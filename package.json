@@ -54,7 +54,6 @@
     "@activeprospect/leadconduit-infusionsoft": "^2.0.0",
     "@activeprospect/leadconduit-jornaya": "^1.0.0",
     "@activeprospect/leadconduit-kelloggs": "~0.0.2",
-    "@activeprospect/leadconduit-leadid": "~0.1.0",
     "@activeprospect/leadconduit-leadperfection": "^0.2.0",
     "@activeprospect/leadconduit-leadpoint": "^1.0.0",
     "@activeprospect/leadconduit-lendingtree": "^2.0.0",
