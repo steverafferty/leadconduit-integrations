@@ -25,18 +25,8 @@ describe 'Modules', ->
 
   it 'should use derived package name', ->
     module = integrations.modules['leadconduit-default.inbound']
-    assert.equal module.package.name, 'LeadConduit'
+    assert.equal module.package.name, 'LeadConduit Standard'
 
-  it 'should use specified package name', ->
-    integration = require('leadconduit-default')
-    original = integration.name
-    integration.name = 'Foo'
-    integrations.initPackage('leadconduit-default')
-    try
-      module = integrations.modules['leadconduit-default.inbound']
-      assert.equal module.package.name, 'Foo'
-    finally
-      integration.name = original
 
 
   describe 'Metadata', ->
