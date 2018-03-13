@@ -2,7 +2,7 @@
   "name": "@activeprospect/leadconduit-integrations",
   "description": "The integrations supported by LeadConduit",
   "author": "Alex Wolfe <alex@activeprospect.com>",
-  "version": "4.6.2",
+  "version": "4.6.3",
   "main": "index.js",
   "scripts": {
     "test": "cake test",
