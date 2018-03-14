@@ -7,9 +7,8 @@ This guide should tell you everything you need to know to develop LeadConduit in
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-# 1. LeadConduit Overview 
 
-- [1. LeadConduit Overview](#1-leadconduit-overview)
+
   - [What It Does](#what-it-does)
   - [How It Does It](#how-it-does-it)
 - [2. Key Concepts](#2-key-concepts)
@@ -40,7 +39,7 @@ This guide should tell you everything you need to know to develop LeadConduit in
   - [`vars`](#vars)
   - [`validate()`](#validate)
   - [`envVariables`](#envvariables)
-  - [Metadata](#metadata)
+  - [Metadata _~draft~_](#metadata-_draft_)
     - [text data](#text-data)
     - [icon images](#icon-images)
   - [Rich UI](#rich-ui)
@@ -90,7 +89,6 @@ This guide should tell you everything you need to know to develop LeadConduit in
   - [Include `node` as a Travis build version](#include-node-as-a-travis-build-version)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-# 1. LeadConduit Overview 
 
 ## What It Does 
 
@@ -486,11 +484,33 @@ When an integration with new environment variables is first deployed (to staging
 
 See the section on `validate()` for the best practices on validating that required environment variables are present. 
 
-## Metadata
+## Metadata _~draft~_
 
 ### text data
 
- in `docs`
+- in `docs`
+- list of tag values:
+tag: Address
+tag: CRM
+tag: Call Center
+tag: Code
+tag: Demographic
+tag: Email
+tag: Email Marketing
+tag: Email, Phone, Address
+tag: Geographic
+tag: List Management
+tag: Marketing Acquisition
+tag: Marketing Automation
+tag: Phone
+tag: Pixel
+tag: TCPA
+tag: Verification
+- list of integration_types:
+integration_type: delivery
+integration_type: enhancement
+integration_type: marketplace enhancement
+
 
 ### icon images
 
@@ -571,29 +591,6 @@ To run the linter, simply type `cake lint` in the module's home directory.
 ## Documentation 
 
 Markdown documentation that describes the functionality of the integration should be included in the `docs` subdirectory. See the Zip-Codes.com integration for an example of the template to be used. Also, see the [integration cakefile](https://github.com/activeprospect/leadconduit-cakefile/) readme for how PDFs can be generated and uploaded to Google Drive.
-
-tag enumeration:
-tag: Address
-tag: CRM
-tag: Call Center
-tag: Code
-tag: Demographic
-tag: Email
-tag: Email Marketing
-tag: Email, Phone, Address
-tag: Geographic
-tag: List Management
-tag: Marketing Acquisition
-tag: Marketing Automation
-tag: Phone
-tag: Pixel
-tag: TCPA
-tag: Verification
-
-integration_type: delivery
-integration_type: enhancement
-integration_type: marketplace enhancement
-
 
 ## Development Cycle
 
