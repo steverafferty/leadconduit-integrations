@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "generateguide": "cat sections/*.md > index.md; doctoc index.md"
+  },
+  "license": "CC-BY-NC-ND-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/activeprospect/leadconduit-integrations.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "doctoc": "^1.2.0"
+  }
+}
