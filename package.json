@@ -63,7 +63,6 @@
     "@activeprospect/leadconduit-militarydotcom": "~0.2.0",
     "@activeprospect/leadconduit-mortech": "^1.0.0",
     "@activeprospect/leadconduit-national-renewable-energy-lab": "^1.0.0",
-    "@activeprospect/leadconduit-pcdi": "~0.0.2",
     "@activeprospect/leadconduit-pipeline-success": "~0.1.0",
     "@activeprospect/leadconduit-powerbi": "~0.0.1",
     "@activeprospect/leadconduit-retentionscience": "^1.0.0",
