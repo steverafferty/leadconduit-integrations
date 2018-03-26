@@ -9,6 +9,7 @@ This guide should tell you everything you need to know to develop LeadConduit in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [1. LeadConduit Overview](#1-leadconduit-overview)
   - [What It Does](#what-it-does)
   - [How It Does It](#how-it-does-it)
 - [2. Key Concepts](#2-key-concepts)
@@ -53,10 +54,8 @@ This guide should tell you everything you need to know to develop LeadConduit in
   - [Development Cycle](#development-cycle)
   - [Tips, Idioms, & Links](#tips-idioms--links)
     - [Useful references](#useful-references)
-    - [Guard against null with '`?.`'](#guard-against-null-with-)
     - [Send the right types in tests](#send-the-right-types-in-tests)
     - [Look for `leadconduit-integration` functions](#look-for-leadconduit-integration-functions)
-    - [Use CoffeeScript's `for…of` to iterate object properties](#use-coffeescripts-forof-to-iterate-object-properties)
     - ["Mask" sensitive data](#mask-sensitive-data)
 - [5. Administration Guide](#5-administration-guide)
   - [Logging in to npm](#logging-in-to-npm)
@@ -89,6 +88,8 @@ This guide should tell you everything you need to know to develop LeadConduit in
   - [Include `node` as a Travis build version](#include-node-as-a-travis-build-version)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# 1. LeadConduit Overview 
 
 ## What It Does 
 
@@ -620,10 +621,6 @@ Following are some common things to know, keep in mind, or have handy for future
 - LeadConduit integration docs: [http://docs.leadconduit.com/](http://docs.leadconduit.com/)
 - npm's semantic version calculator: [http://semver.npmjs.com/](http://semver.npmjs.com/)
 
-### Guard against null with '`?.`'
-
-Use CoffeeScript's existential operator to soak up nulls. As [the docs say](http://coffeescript.org/#existential-operator): "The accessor variant of the existential operator `?.` can be used to soak up null references in a chain of properties. Use it instead of the dot accessor `.` in cases where the base value may be null or undefined."
-
 ### Send the right types in tests
 
 If you create a `vars` object in your tests, the values will be JSON strings, integers, etc., and not the "rich" LeadConduit types that the integration may get from the handler. Use the type-parsing utility found in the `leadconduit-integration` module to automatically create those rich types as needed, as defined by the integration's request variables array. 
@@ -666,12 +663,7 @@ The `leadconduit-integration` module is where common functions, like the type-pa
 
 By the same token, if you've written or found functions that _should_ be common, add them there.
 
-
-### Use CoffeeScript's `for…of` to iterate object properties
-
-It's common in integrations to need to iterate over the attributes of an object, and CoffeeScript provides a handy tool for this: the [`for…of` comprehension](http://coffeescript.org/#loops).
-
-### "Mask" sensitive data 
+### "Mask" sensitive data
 
 The full details of all transactions are visible in the LeadConduit UI, but we mask, or obscure, the data that should not be. This happens automatically for some field types, such as `ssn` (for Social Security Numbers) and `credential`. However, sometimes it's necessary for an integration to manually mask data. 
 
