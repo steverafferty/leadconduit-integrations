@@ -54,6 +54,7 @@ This guide should tell you everything you need to know to develop LeadConduit in
   - [Development Cycle](#development-cycle)
   - [Tips, Idioms, & Links](#tips-idioms--links)
     - [Useful references](#useful-references)
+    - [Reference integrations](#reference-integrations)
     - [Send the right types in tests](#send-the-right-types-in-tests)
     - [Look for `leadconduit-integration` functions](#look-for-leadconduit-integration-functions)
     - ["Mask" sensitive data](#mask-sensitive-data)
@@ -620,6 +621,19 @@ Following are some common things to know, keep in mind, or have handy for future
 - LeadConduit API docs: [http://docs.activeprospect.com/](http://docs.activeprospect.com/)
 - LeadConduit integration docs: [http://docs.leadconduit.com/](http://docs.leadconduit.com/)
 - npm's semantic version calculator: [http://semver.npmjs.com/](http://semver.npmjs.com/)
+
+### Reference integrations
+
+There are designated reference implementations for some broad types of things that integrations do. These are the best first places to look to see how these things are done (and if they're out of date or not optimal, that's a bug that should be fixed ASAP). These can be seen using [this GitHub search](https://github.com/search?utf8=%E2%9C%93&q=%22reference+integration%22+user%3Aactiveprospect&type=Repositories&ref=advsearch&l=&l=), or via this index:
+
+- basic request/response style outbound integration: [SuppressionList](https://github.com/activeprospect/leadconduit-integration-suppressionlist/), specifically `query_item`
+- basic handle-style outbound integration: [PixelTracker](https://github.com/activeprospect/leadconduit-integration-pixeltracker/)
+- handle-style outbound using 3rd-party Node library: [AutoResponder](https://github.com/activeprospect/leadconduit-integration-autoresponder/); [Clearbit](https://github.com/activeprospect/leadconduit-integration-clearbit/)
+- inbound integration: [LeadPoint](https://github.com/activeprospect/leadconduit-integration-leadpoint/)
+- using environment variables (`envVariables`): [ZipCodes](https://github.com/activeprospect/leadconduit-integration-zipcodes)
+- manual masking of sensitive data: [ZipCodes](https://github.com/activeprospect/leadconduit-integration-zipcodes)
+- basic rich UI: [SuppressionList](https://github.com/activeprospect/leadconduit-integration-suppressionlist/)
+- rich UI that supports OAuth: [InfustionSoft](https://github.com/activeprospect/leadconduit-integration-infusionsoft)
 
 ### Send the right types in tests
 
