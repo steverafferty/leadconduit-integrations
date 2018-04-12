@@ -633,7 +633,7 @@ There are designated reference implementations for some broad types of things th
 - using environment variables (`envVariables`): [ZipCodes](https://github.com/activeprospect/leadconduit-integration-zipcodes)
 - manual masking of sensitive data: [ZipCodes](https://github.com/activeprospect/leadconduit-integration-zipcodes)
 - basic rich UI: [SuppressionList](https://github.com/activeprospect/leadconduit-integration-suppressionlist/)
-- rich UI that supports OAuth: [InfustionSoft](https://github.com/activeprospect/leadconduit-integration-infusionsoft)
+- rich UI that supports OAuth: [InfusionSoft](https://github.com/activeprospect/leadconduit-integration-infusionsoft)
 
 ### Send the right types in tests
 
