@@ -44,6 +44,7 @@
     "@activeprospect/leadconduit-experian": "^1.3.0",
     "@activeprospect/leadconduit-facebook": "~0.2.0",
     "@activeprospect/leadconduit-five9": "~0.0.1",
+    "@activeprospect/leadconduit-first-orion": "^1.0.0",
     "@activeprospect/leadconduit-fullcontact": "~0.0.1",
     "@activeprospect/leadconduit-google": "~0.0.2",
     "@activeprospect/leadconduit-highrise": "^0.1.0",
