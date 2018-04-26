@@ -38,6 +38,7 @@
     "@activeprospect/leadconduit-closeio": "~0.1.0",
     "@activeprospect/leadconduit-constantcontact": "^1.0.0",
     "@activeprospect/leadconduit-costco": "~0.0.1",
+    "@activeprospect/leadconduit-drips":  "^1.0.0",
     "@activeprospect/leadconduit-ebureau": "~0.1.0",
     "@activeprospect/leadconduit-email-delivery": "^1.0.0",
     "@activeprospect/leadconduit-email-oversight": "^1.0.0",
