@@ -839,7 +839,7 @@ New integrations, especially those that are resold by ActiveProspect, may also n
 
 ## Managing Entity Records
 
-Integrations have corresponding records in the `entities` database collection. Here's how to query, update, and create those.
+Recipient integrations (_not_ enhancements) require corresponding records in the `entities` database collection. Here's how to query, update, and create those.
 
 Some examples presume installation of [jq](https://stedolan.github.io/jq/). You'll also need your LeadConduit superuser API key. Use the browser dev-tools to find this (in Chrome, use the "Network" view, while logged in to LeadConduit in the appropriate environment; the `user` response JSON will include `api_key`). This is shown below as the environment variable `AP_API`; if you run `export AP_API=your_super_user_api_key` to set that, you'll be able to copy & paste these examples.
 
@@ -852,19 +852,18 @@ The following `jq` query uses the regular expression `"^briteverify"` to match a
 _note to be written: you may have to use the account API key_
 
 ```
-$ curl -X GET -uX:$AP_API -H 'Accept: application/json' https://next.leadconduit.com/entities | jq 'map(select(.name | match("^briteverify"; "i")))'
+$ curl -X GET -uX:$AP_API -H 'Accept: application/json' https://next.leadconduit.com/entities | jq 'map(select(.name | match("^zoho"; "i")))'
 {
-  "id": "535e9f8c94149d05b5000001",
-  "name": "BriteVerify",
+  "id": "54cbba325349ad20c42c92c49",
+  "name": "ZOHO",
   "source": null,
-  "recipient": "enhancement",
-  "logo_url": "https://s3.amazonaws.com/integration-logos/briteverify.png",
+  "recipient": "crm",
+  "logo_url": "https://s3.amazonaws.com/integration-logos/zoho.png",
   "module_ids": [
-    "leadconduit-briteverify.outbound.email",
-    "leadconduit-briteverify.outbound.name_verify"
+    "leadconduit-zoho.outbound.insert_records"
   ],
-  "website": "http://www.briteverify.com",
-  "standard": true
+  "standard": true,
+  "deprecated": true
 }
 ```
 
@@ -873,19 +872,18 @@ $ curl -X GET -uX:$AP_API -H 'Accept: application/json' https://next.leadconduit
 If you already have the id, as you might from a previous query like the one above, you can also query that directly.
 
 ```
-curl -X GET -uX:$AP_API -H 'Accept: application/json' https://next.leadconduit.com/entities/535e9f8c94149d05b5000001 | jq '.'
+curl -X GET -uX:$AP_API -H 'Accept: application/json' https://next.leadconduit.com/entities/54cbba325349ad20c42c92c49 | jq '.'
 {
-  "id": "535e9f8c94149d05b5000001",
-  "name": "BriteVerify",
+  "id": "54cbba325349ad20c42c92c49",
+  "name": "ZOHO",
   "source": null,
-  "recipient": "enhancement",
-  "logo_url": "https://s3.amazonaws.com/integration-logos/briteverify.png",
+  "recipient": "crm",
+  "logo_url": "https://s3.amazonaws.com/integration-logos/zoho.png",
   "module_ids": [
-    "leadconduit-briteverify.outbound.email",
-    "leadconduit-briteverify.outbound.name_verify"
+    "leadconduit-zoho.outbound.insert_records"
   ],
-  "website": "http://www.briteverify.com",
-  "standard": true
+  "standard": true,
+  "deprecated": true
 }
 ```
 
@@ -893,7 +891,7 @@ curl -X GET -uX:$AP_API -H 'Accept: application/json' https://next.leadconduit.c
 
 You could do this, for example, if you need to add a new endpoint to an existing integration.
 
-First, `GET` the existing data, as shown above. You could redirect it to a file by adding this to the end of the command: ` > entity.json`. Then that file can be edited as needed (e.g., to add another entry to the `module_ids` array). Using the `"id"` value from that `GET`, you can now `PUT` to update the record:
+First, `GET` the existing data, as shown above. You could redirect it to a file by adding this to the end of the command: ``> entity.json``. Then that file can be edited as needed (e.g., to add another entry to the `module_ids` array). Using the `"id"` value from that `GET`, you can now `PUT` to update the record:
 
 ```
 curl -X PUT -uX:$AP_API -H 'Accept: application/json' -H 'Content-Type: application/json' -d@entity.json https://next.leadconduit.com/entities/ID_VALUE_FROM_JSON | jq '.'
@@ -909,7 +907,7 @@ Similar to the "update" above, start with a JSON file. Don't include an `"id"`; 
 {
   "name": "Zion Mainframe",
   "source": null,
-  "recipient": "other",
+  "recipient": "crm",
   "logo_url": "https://s3.amazonaws.com/integration-logos/zion.png",
   "module_ids": [
     "leadconduit-zion.outbound.broadcast"
