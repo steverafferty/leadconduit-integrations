@@ -83,7 +83,7 @@
     "@activeprospect/leadconduit-webbula": "^1.0.0",
     "@activeprospect/leadconduit-webform": "^1.0.0",
     "@activeprospect/leadconduit-whitepages": "^1.0.0",
-    "@activeprospect/leadconduit-zillow": "~0.0.3",
+    "@activeprospect/leadconduit-zillow": "^0.1.0",
     "@activeprospect/leadconduit-zipcodes": "^0.2.0",
     "@activeprospect/leadconduit-zoho": "^2.0.0",
     "dotaccess": "^1.0.5",
