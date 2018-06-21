@@ -83,6 +83,7 @@ This guide should tell you everything you need to know to develop LeadConduit in
   - [Transferring 3rd-party Code](#transferring-3rd-party-code)
 - [6. Appendix A - Getting Started](#6-appendix-a---getting-started)
 - [7. Appendix B - Updated Conventions](#7-appendix-b---updated-conventions)
+  - [Remove `type` from integration modules](#remove-type-from-integration-modules)
   - [Throw errors for missing environment variables](#throw-errors-for-missing-environment-variables)
   - [List environment variables in `envVariables()`](#list-environment-variables-in-envvariables)
   - [Add CHANGELOG.md](#add-changelogmd)
@@ -379,6 +380,8 @@ Note that the `required` attribute is used _only_ by the UI. Enforcing that “r
 Though the `type` value does not affect the UI, it is used by the lead-handler, which creates an instance of the specified type for each variable before invoking `request()` (or `handle()`). 
 
 However, a specific “rich” type (see Key Concepts section on "Field Types") should only be used when it’s really needed; use the `string` type wherever possible. This avoids subtle bugs and unexpected behavior caused by the lead-handler’s automatic typecasting. If the integration needs to check `.valid`, or access other object attributes (e.g., `.area` or `.exchange`), then list it as `type: 'phone'`. Otherwise the integration will ask for a string, and LeadConduit will provide it that way. When a rich type is specified, care must be taken to “stringify” the value as necessary with the `.valueOf()` function.
+
+It's an unlikely scenario but also note that if a variable corresponds to a standard system field, such as `lead.annual_salary`, the "rich" type listed by the integration should match that field's type or be given as `string` as described just above. If the standard field is a `number`, listing it in the request variables as a `range` will have no effect. Only listing the type as `string` affects the field's type within the integration; no other typecasting occurs.
 
 Using rich types also requires extra care in test code; see details about testing in the Author’s Guide section.
 
@@ -986,6 +989,10 @@ For now, the best way to get started is to use an existing integration module as
 # 7. Appendix B - Updated Conventions
 
 Over time, we realize or discover new, better ways to do things in integration modules. But because there are so many modules, it's not usually worthwhile to revisit all of them at once to make those changes. Instead, we try to make these changes when we're fixing a bug or adding a feature to a module. The list below are updates that should be made whenever feasible.
+
+## Remove `type` from integration modules
+
+The type of an integration was sometimes included in the `exports` of those modules (e.g., `type: 'outbound'`). This information is now provided in the `.md` metadata files in `docs/`, and should be removed from the integration module.
 
 ## Throw errors for missing environment variables
 
