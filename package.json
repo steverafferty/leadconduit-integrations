@@ -21,6 +21,7 @@
     "@activeprospect/leadconduit-aarp": "^1.0.0",
     "@activeprospect/leadconduit-activecampaign": "^1.0.0",
     "@activeprospect/leadconduit-adt": "^0.1.0",
+    "@activeprospect/leadconduit-agile-crm": "^1.0.0",
     "@activeprospect/leadconduit-anura": "^0.1.0",
     "@activeprospect/leadconduit-auto-lead-data-format": "^0.1.0",
     "@activeprospect/leadconduit-autoresponder": "^0.3.0",
