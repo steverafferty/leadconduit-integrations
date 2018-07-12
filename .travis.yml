@@ -7,4 +7,4 @@ notifications:
     secure: nZuo5NTQAQXjg/D1Mz0yLDph9OQNFBRIDwTXWPsEHMCjWuCIxGby85O55ufwCLF+fY2NVKPYEJQG8Cph3fjZezTK7OBys+I51Zf8rluaRlkQP6WRKTx/qI/5aohnAZn/mPnF08NNuT1DIPs316m34KlsgR/JPrbyKHeJL6adOR8=
 sudo: false
 env:
-  secure: "NTJCI1UgSy3mui1N7iN7krcFtzXfnwnROoQPsfcg5E/cNi0lDysobjzQAa2YUKnWMv2IO9aYw7jkkF9h3xKMT/jvSCCInwp5q9zjWNM6etkpEf2nUVjsFhQHSdRiB0QIQSvaACF08ZNOlLJacIK/T+CpmaUcETggQnIHk6cXF24="
+   secure: "Igk+2/owMgrIipvJaDO8ESXzMe9PDTxeh+3NGYQuBYSsLgMOCCeJzV7+xF6MshXCjz+EnPwudHzJs/HiwA9g67pArKawiTClgJD9/Wpy6StNbXLWeqB76eUU0EPF4gU/WK3hgccpb80LbF4ij13PNdTvmHq466XhDGSTdzc4ET0="
