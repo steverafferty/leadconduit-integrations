@@ -96,6 +96,7 @@
     "leadconduit-fields": "^2.25.1",
     "leadconduit-form-post": "^1.0.0",
     "leadconduit-get": "^1.0.0",
+    "leadconduit-integration-leadconduit": "~0.0.1",
     "leadconduit-json": "^1.0.0",
     "leadconduit-pixeltracker": "~0.0.1",
     "leadconduit-soap": "^1.0.0",
