@@ -47,7 +47,7 @@
     "@activeprospect/leadconduit-facebook": "~0.2.0",
     "@activeprospect/leadconduit-fidelity-life": "^1.0.0",
     "@activeprospect/leadconduit-first-orion": "^1.0.0",
-    "@activeprospect/leadconduit-five9": "~0.0.1",
+    "@activeprospect/leadconduit-five9": "^1.0.0",
     "@activeprospect/leadconduit-google": "~0.0.2",
     "@activeprospect/leadconduit-highrise": "^0.1.0",
     "@activeprospect/leadconduit-homeadvisor": "~0.0.1",
