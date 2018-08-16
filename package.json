@@ -44,7 +44,7 @@
     "@activeprospect/leadconduit-email-delivery": "^1.0.0",
     "@activeprospect/leadconduit-email-oversight": "^1.0.0",
     "@activeprospect/leadconduit-experian": "^1.3.0",
-    "@activeprospect/leadconduit-facebook": "~0.2.0",
+    "@activeprospect/leadconduit-facebook": ">=0.3.0-alpha.0",
     "@activeprospect/leadconduit-fidelity-life": "^1.0.0",
     "@activeprospect/leadconduit-first-orion": "^1.0.0",
     "@activeprospect/leadconduit-five9": "^1.0.0",
