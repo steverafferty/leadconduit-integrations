@@ -101,7 +101,7 @@ These lead posts are sent in to a LeadConduit **flow**, which a LeadConduit cust
 
 Sources are used for reporting, answering questions such as: “How many leads did Vendor X send in to this flow last month?” Each source may also have **acceptance criteria rules** defined for it, which allows the flow to immediately reject leads that don’t meet some bare minimum requirements. For example, if a particular vendor must always provide a valid postal code, this could be defined as a rule on that source.
 
-Once a lead has been accepted in the flow, it proceeds to the remaining predefined **steps**. One type of step is called a **recipient** (in the UI, this type of step is presented as an “Enhancement” or “Delivery” step; from the standpoint of an integration developer, they’re essentially the same). This kind of step is where LeadConduit makes HTTP requests of other services, via a particular **outbound integration**. These integrations and how they work is the main subject of this guide, but at a high level they define what data is sent where, in what format, and how the response from that service is parsed. They also control how data will be added to the lead from that point on in the flow, which is referred to as **appended data**.
+Once a lead has been accepted in the flow, it proceeds to the remaining predefined **steps**. One type of step is called a **recipient**. In the UI, this type of step is presented as an “Enhancement” or “Recipient” (formerly "Delivery") step; from the standpoint of an integration developer, they’re essentially the same. This kind of step is where LeadConduit makes HTTP requests of other services, via a particular **outbound integration**. These integrations and how they work is the main subject of this guide, but at a high level they define what data is sent where, in what format, and how the response from that service is parsed. They also control how data will be added to the lead from that point on in the flow, which is referred to as **appended data**.
 
 The other type of step that can be added to a flow are **filter** steps, which define criteria to stop processing and reject a lead. These are similar to the acceptance criteria mentioned previously, but they apply to leads from _all_ sources, and they can be placed after recipient steps. That means that their rules can also use appended data. For example, after a recipient step that sends the lead’s email address to an email-verification service, there would probably be a filter step immediately following it, with a rule such as, “if the email-verification service responded that this email is fraudulent, then stop processing now”.
 
@@ -113,7 +113,7 @@ The LeadConduit service provides two interfaces, referred to as the **API** and 
 
 These two interfaces are provided by a single Node.js server application, written in CoffeeScript, and backed by a MongoDB database. The many modules that make up the server are published on npm.org. Some are public, while others are available only to internal ActiveProspect developers. Source code is published on github.com and is also a mix of repos that are public (i.e., open source), and others that are accessible only to members of the ActiveProspect organization.
 
-Similarly, all inbound and outbound integrations are Node.js modules, written in CoffeeScript and published on npm.org. Some parts of each integration module are used by the API, while others are used by the handler. For example,  when a flow step is being configured, the list of fields required by an outbound integration will be shown in the LeadConduit UI (via data from the API). The majority of the integration code – how to formulate the outbound request, how to parse the response, and more – will be used by the handler at lead-handling time.
+Similarly, all inbound and outbound integrations are Node.js modules and published on npm.org. Some parts of each integration module are used by the API, while others are used by the handler. For example,  when a flow step is being configured, the list of fields required by an outbound integration will be shown in the LeadConduit UI (via data from the API). The majority of the integration code – how to formulate the outbound request, how to parse the response, and more – will be used by the handler at lead-handling time.
 # 2. Key Concepts 
 
 ## Fields - Standard and Custom
@@ -244,7 +244,7 @@ Examples:
 - the data provided was rejected by the other system for some reason (e.g., the phone number being validated was found to be disconnected)
 - no data could be found for the data provided (e.g., a lookup based on `email` found no data)
 
-One rule of thumb is that transactions that "failed" can't be "fixed", that they would not have a different outcome if they were retried.
+One rule of thumb is that transactions that "failed" can't be "fixed"--i.e., that they would not have a different outcome if they were retried.
 
 ### Error
 
@@ -286,10 +286,7 @@ module.exports = {
   }
 };
 ```
-
-The `index.js` file may also optionally export a `name` attribute for the module. In most cases this is unnecessary, as the name is automatically derived from the package name itself.
-
-Similarly, each integration within the module may optionally export a `name` value for that integration's endpoint. If not present, the name is inferred from that integration’s name. For example, the SuppressionList `query_item` integration, with no explicit `name` set, will show up as “Query Item” in the UI.
+You may see a `name` attribute exported in some older `index.js` files or within the integration module itself. These properties follow an outdated pattern and can be removed. Integration names are now derived from `.md` metadata files in `docs/`.
 
 **Warning:** the word "name" is a reserved word. So don't name an integration `name`. For example, if a service supported lookup by either phone or name, you could not export `{ outbound: { name: require('./lib/name_svc') } }`.
 
@@ -356,7 +353,7 @@ Each item in the array is a JavaScript object with these attributes:
 - `name` -- the name that the variable will be referenced by. For example, `lead.postal_code`, or `list_names`
 - `type` -- the type of the variable, such as `string`, `phone`, etc. 
 - `required` -- a boolean value indicating whether this variable is required
-- `description` -- descriptive text explaining what the variable means, or is used for. Can also include details about default values, as appropriate.
+- `description` -- descriptive text explaining what the variable means, or is used for. Should also include details about default values, if appropriate.
 
 Example: 
 
@@ -414,7 +411,7 @@ The callback function takes two values: an error object, and the JavaScript obje
 
 The main data structure for lead data is conventionally named `vars` in these functions (see also: the Key Concepts section “Vars, Appended Data, and “The Snowball””). 
 
-Integrations never directly add to or change the attributes of the `vars` object (in fact they are given only a copy of `vars`, so if they did change it, those changes would be lost). Instead, the LeadConduit handler manages adding data to it (aka building up “the snowball”), using the objects returned by `response()` and `handle()`, as described in previous sections. 
+Integrations never directly mutate the `vars` object. Indeed, integrations are given a copy of `vars`, so any changes made to the object would be lost. The LeadConduit handler manages adding data to the `vars` object (aka building up “the snowball”), using the data returned by `response()` and `handle()` (as described in previous sections). The one exception here is with `vars.credential`. The handler compares the credential after the integration is finished and, if the credential has changed, saves it.
 
 That leaves the single thing `vars` is used for in integrations: using the data it contains. This nearly always comes from the `lead` attribute, which itself contains all the fields that define the lead being handled (`email`, `first_name`, etc.). In an integration, those are fully referenced as, for example, `vars.lead.email`, `vars.lead.first_name`, etc.
 
@@ -577,9 +574,9 @@ The following are not in priority order, but are numbered for reference.
 
 Thorough test coverage is an important aspect of integration development. Testing the various edge-case conditions that are common in working with other systems, and being confident that future changes won't cause a regression in behavior, are part of what make integration modules superior to customers simply using the general-purpose configurable (aka "custom") integrations. PRs with failing or pending tests are never approved.
 
-Refer to test code for existing modules, located in the `spec` subdirectory, to help remind yourself of the kinds of cases to account for.
+Refer to test code for existing modules, located in the `test` subdirectory, to help remind yourself of the kinds of cases to account for.
 
-Tests can be run locally by running `npm test` (or the alias `cake test`) at the command line. 
+Tests can be run locally by running `npm test` at the command line. 
 
 Our [continuous-integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration) process uses [Travis](https://travis-ci.com/). Each git branch should be set up to be automatically built. Within an integration repo, this is controlled by the `.travis.yml` file (note that it begins with a dot, and so may be hidden in some filesystem views), as well as the `scripts.test` value defined in `package.json`.
 
@@ -587,15 +584,19 @@ When adding a brand-new integration, there is a one-time setup to do to configur
 
 ## Linting
 
-A newer part of our standards is running the CoffeeScript [linter](https://en.wikipedia.org/wiki/Lint_(software)) on your code. This helps enforce coding styles, described in more detail below. This hasn't yet been added to our CI process, but should be run by authors prior to submitting PRs.
+~A newer part of our standards is running the CoffeeScript [linter](https://en.wikipedia.org/wiki/Lint_(software)) on your code. This helps enforce coding styles, described in more detail below. This hasn't yet been added to our CI process, but should be run by authors prior to submitting PRs.~
 
-If many changes are suggested by the linter, as may be the case with older integrations, those changes should ideally be kept in a commit that's separate from the "real" (e.g., bug-fix) changes.
+~If many changes are suggested by the linter, as may be the case with older integrations, those changes should ideally be kept in a commit that's separate from the "real" (e.g., bug-fix) changes.~
 
-To run the linter, simply type `cake lint` in the module's home directory.
+~~To run the linter, simply type `cake lint` in the module's home directory.~~~
 
-## Documentation 
+todo: This sections needs to be updated (or removed), as integrations are no longer being built in CoffeeScript.
 
-Markdown documentation that describes the functionality of the integration should be included in the `docs` subdirectory. See the Zip-Codes.com integration for an example of the template to be used. Also, see the [integration cakefile](https://github.com/activeprospect/leadconduit-cakefile/) readme for how PDFs can be generated and uploaded to Google Drive.
+## Documentation
+
+~~Markdown documentation that describes the functionality of the integration should be included in the `docs` subdirectory. See the Zip-Codes.com integration for an example of the template to be used. Also, see the [integration cakefile](https://github.com/activeprospect/leadconduit-cakefile/) readme for how PDFs can be generated and uploaded to Google Drive.~~
+
+todo: This section needs to be updated, as the `docs` directory is now contains metadata. Also, it seems that the practice of providing high-level documentation about the integration is now longer in use.
 
 ## Development Cycle
 
@@ -758,7 +759,7 @@ _todo: add full details, incl. `leadconduit-deploy`_
 
 Module version numbers follow [semver guidelines](http://semver.org/), with "major.minor.patch" form. Our guidelines are similar to general usage, but choosing what level to increment on a release can be subjective. Make your best call, or ask a teammate for a second opinion if you're not sure.
 
-- the **major** version is incremented whenever a breaking or incompatible change is made. We do not typically follow the guideline that production-ready code is promoted to "1.x.x"; it's common to see stable modules with "0.x.x" (even "0.0.x") in use. 
+- the **major** version is incremented whenever a breaking or incompatible change is made. In the past, we have not typically followed convention and promoted production-ready code "1.x.x"; it's common to see stable modules with "0.x.x" (even "0.0.x") in use. However, new integrations _should_ follow this convention and be deployed to production at "1.0.0".
 - the **minor** version is incremented when new functionality is added that isn't incompatible or breaking. 
 - the **patch** version is incremented when a bug is fixed or trivial improvement made. 
 
@@ -784,18 +785,18 @@ In either case, the integrations module itself now needs to be updated and relea
 
 In nearly all cases, we deploy new and updated integrations to the "staging" LeadConduit instance first, so that you can verify the functionality, and so it can be acceptance-tested by others. Though production updates and releases are announced in the `#incidents` channel, that is not necessary for changes in staging.
 
-This can be done by anyone on the development team, using the commands below in the `#leadconduit` channel in the ActiveProspect Slack. Prior to running this, look for a green dot next to the "staging1" bot in that channel. You may want to run `staging ping` to make sure it's responsive (it should respond, "pong!"). 
+This can be done by anyone on the development team, using the commands below in the `#bots-staging` channel in the ActiveProspect Slack. Prior to running this, look for a green dot next to the "staging1" bot in that channel.
 
 In the easier case, where `leadconduit-integrations` didn't have to be changed, you can tell the bot to just update that single integration by running this command (for a private package called "whatever"):
 
 ```
-staging leadconduit update @activeprospect/leadconduit-whatever
+leadconduit update @activeprospect/leadconduit-whatever
 ```
 
 Or, for a public package named "whatever", you can save some keystrokes:
 
 ```
-staging leadconduit update whatever
+leadconduit update whatever
 ```
 
 After a moment, it should respond with a message that the integration was updated, listing the new version number as confirmation. Since staging isn't heavily used, and it's unlikely that changes to any particular integration will bother anyone, you can run an update there whenever you want.
@@ -805,14 +806,14 @@ However, for a new or significantly updated integration, which required `leadcon
 Once you're ready, the command is simple:
 
 ```
-staging leadconduit deploy
+leadconduit deploy
 ```
 
 ### Deploying on Production 
 
-The process is similar for production deploys, but of course must be handled with greater care so that live lead-processing isn't affected. Therefore, though the commands are virtually the same (except specifying "production" instead of "staging"), not all developers have permission to issue the production deploy commands. When your integration is ready to go to production, ask a senior developer to deploy it.
+The process is similar for production deploys, but of course must be handled with greater care so that live lead-processing isn't affected. Therefore, though the commands are the same, not all developers have permission to issue deploy commands in the production bot slack channel. When your integration is ready to go to production, ask a senior developer to deploy it.
 
-As of this writing, there are two production servers, which can also be addressed separately by the deploy directives: `app3` and `app4`. 
+As of this writing, there are four production servers, which can also be addressed separately by the deploy directives: `app3`, `app4`, `app9`, and `app10`. 
 
 ### Rolling back a deploy 
 
@@ -826,7 +827,7 @@ staging leadconduit update @activeprospect/leadconduit-whatever --version=0.0.6
 
 #### Entity Added or Updated
 
-Integrations have corresponding records in the `entities` database collection. See the "Managing Entity Records" section below.
+"Enhancement" integrations have corresponding records in the `entities` database collection. See the "Managing Entity Records" section below.
 
 #### Environment Variables
 
@@ -1045,7 +1046,7 @@ In other words, a module's `.travis.yml` should look like this (the numbers may 
 ```
 language: node_js
 node_js:
-  - 6
+  - 8
   - node
 sudo: false
 ```
