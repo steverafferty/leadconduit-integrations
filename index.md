@@ -88,6 +88,8 @@ This guide should tell you everything you need to know to develop LeadConduit in
   - [List environment variables in `envVariables()`](#list-environment-variables-in-envvariables)
   - [Add CHANGELOG.md](#add-changelogmd)
   - [Include `node` as a Travis build version](#include-node-as-a-travis-build-version)
+- [8. Appendix C - Running Locally](#8-appendix-c---running-locally)
+  - [Tips & Tricks](#tips--tricks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -584,11 +586,11 @@ When adding a brand-new integration, there is a one-time setup to do to configur
 
 ## Linting
 
-~A newer part of our standards is running the CoffeeScript [linter](https://en.wikipedia.org/wiki/Lint_(software)) on your code. This helps enforce coding styles, described in more detail below. This hasn't yet been added to our CI process, but should be run by authors prior to submitting PRs.~
+~~A newer part of our standards is running the CoffeeScript [linter](https://en.wikipedia.org/wiki/Lint_(software)) on your code. This helps enforce coding styles, described in more detail below. This hasn't yet been added to our CI process, but should be run by authors prior to submitting PRs.~~
 
-~If many changes are suggested by the linter, as may be the case with older integrations, those changes should ideally be kept in a commit that's separate from the "real" (e.g., bug-fix) changes.~
+~~If many changes are suggested by the linter, as may be the case with older integrations, those changes should ideally be kept in a commit that's separate from the "real" (e.g., bug-fix) changes.~~
 
-~~To run the linter, simply type `cake lint` in the module's home directory.~~~
+~~To run the linter, simply type `cake lint` in the module's home directory.~~
 
 todo: This sections needs to be updated (or removed), as integrations are no longer being built in CoffeeScript.
 
@@ -1050,3 +1052,23 @@ node_js:
   - node
 sudo: false
 ```
+# 8. Appendix C - Running Locally
+
+_Note: although this guide is currently published publicly, if you're outside the ActiveProspect organization, the information in this section isn't of use to you, and can be ignored._
+
+**todo: flesh out this section with full details of how to `npm link`, etc.**
+
+## Tips & Tricks
+
+1. To verify what's being served by the LC API:
+
+    a. Broad check for modules (this should return all the integration names): `curl -X GET -H 'Accept: application/json' http://leadconduit.localhost/packages | jq '.[] | .id' | grep suppressionlist`
+
+    b. Full detail for one integration (including, for example, the boolean `package.ui` that indicates a "rich UI" is included in the module): `curl -X GET -H 'Accept: application/json' http://leadconduit.localhost/packages | jq '.[] | select(.id == "leadconduit-suppressionlist.outbound.add_item")'`
+
+2. To search modules installed on the filesystem, run this from your LC root directory: `find . -name "leadconduit-suppressionlist" -print -follow -exec grep version {}/package.json \;`
+
+3. To verify the exact version loaded by LC:
+    a. In the app root directory run `node`
+    b. `x = require('@activeprospect/leadconduit-integrations')` (this takes a moment)
+    c. `x.packages['leadconduit-suppressionlist']`
