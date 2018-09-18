@@ -6,4 +6,4 @@ A Node.JS module that includes all integrations supported by LeadConduit. Please
 
 ### Development Guide
 
-Information about developing LeadConduit integration modules can be found in [guide.md](guide.md).
+Information about developing LeadConduit integration modules can be found in [guide.md](http://activeprospect.github.io/leadconduit-integrations/).
