@@ -73,6 +73,7 @@
     "@activeprospect/leadconduit-salesforce": "^2.0.0",
     "@activeprospect/leadconduit-sendgrid": "^2.0.0",
     "@activeprospect/leadconduit-speak2leads": "^1.0.0",
+    "@activeprospect/leadconduit-teledrip": "~0.0.1",
     "@activeprospect/leadconduit-telesign": "^1.2.0",
     "@activeprospect/leadconduit-towerdata": "^3.0.0",
     "@activeprospect/leadconduit-twilio": "^1.0.0",
