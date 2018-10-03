@@ -80,7 +80,6 @@
     "@activeprospect/leadconduit-uniqlo": "~0.0.1",
     "@activeprospect/leadconduit-usps": "^1.0.0",
     "@activeprospect/leadconduit-velocify": "^1.0.0",
-    "@activeprospect/leadconduit-versium": "^1.0.0",
     "@activeprospect/leadconduit-webbula": "^1.0.0",
     "@activeprospect/leadconduit-webform": "^1.0.0",
     "@activeprospect/leadconduit-whitepages": "^1.0.0",
