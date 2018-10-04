@@ -40,11 +40,11 @@ This guide should tell you everything you need to know to develop LeadConduit in
   - [`vars`](#vars)
   - [`validate()`](#validate)
   - [`envVariables`](#envvariables)
-  - [Metadata _~draft~_](#metadata-_draft_)
-    - [text data](#text-data)
-    - [icon images](#icon-images)
-  - [Rich UI](#rich-ui)
-- [4. Development Guide](#4-development-guide)
+  - [package metadata](#package-metadata)
+    - [/docs](#docs)
+    - [icon.png](#iconpng)
+  - [rich UI](#rich-ui)
+    - [return data](#return-data)
   - [Getting Started](#getting-started)
   - [Development Environment](#development-environment)
   - [Style Guide](#style-guide)
@@ -489,38 +489,62 @@ When an integration with new environment variables is first deployed (to staging
 
 See the section on `validate()` for the best practices on validating that required environment variables are present. 
 
-## Metadata _~draft~_
+## package metadata
 
-### text data
+Metadata for integrations includes the name, provider, provider URL, etc. It's used in the LC UI, and is also available to other clients (e.g., AP marketing).
 
-- in `docs`
-- list of tag values:
-tag: Address
-tag: CRM
-tag: Call Center
-tag: Code
-tag: Demographic
-tag: Email
-tag: Email Marketing
-tag: Email, Phone, Address
-tag: Geographic
-tag: List Management
-tag: Marketing Acquisition
-tag: Marketing Automation
-tag: Phone
-tag: Pixel
-tag: TCPA
-tag: Verification
-- list of integration_types:
-integration_type: delivery
-integration_type: enhancement
-integration_type: marketplace enhancement
+### /docs
 
+Each integration should have a `docs` directory at the root level, containing at least two Markdown-with-[frontmatter](https://jekyllrb.com/docs/front-matter/) files.
 
-### icon images
+The first is `index.md`, and contains information about the package as a whole. The others have information about each integration, and are named to match them (e.g., `outbound.query_item.md`; see "index.js & Naming", above).
 
-## Rich UI
-# 4. Development Guide
+1. package information (`index.md`)
+  1. `provider` - the organization that provides the service ("ActiveProspect")
+  2. `name` - the name of the package ("SuppressionList")
+  3. `link` - the URL to learn more about the provider("https://activeprospect.com/")
+  4. following the end of the frontmatter separator, the remainder of the file contains Markdown descriptive text ("Our lightning-fast API allows you to query your lists...")
+2. integration information (e.g., `outbound.query_item.md`)
+  1. `name` - the name of the particular service within the package ("Query List")
+  2. `link` - the URL to learn more about this particular service ("https://activeprospect.com/products/suppressionlist/")
+  3. `integration_type` - a categorization of what the integration is used for. One of: "delivery", "enhancement" (for bring-your-own-license services), or "marketplace enhancement" (for resold services)
+  4. `tag` - a tag value to help search and sort across all integrations. Multiple values can be listed, separated by commas ("Email, Phone").
+    - Address
+    - CRM
+    - Call Center
+    - Code
+    - Demographic
+    - Email
+    - Email Marketing
+    - Geographic
+    - List Management
+    - Marketing Acquisition
+    - Marketing Automation
+    - Phone
+    - Pixel
+    - TCPA
+    - Verification
+  5. as with `index.md`, Markdown text following the frontmatter divider provides longer descriptive text ("Query one or more Lists for a single Value.")
+
+### icon.png
+
+The icon for an integration should be provided within the `/lib/ui/public/images` directory, with the filename `icon.png`.
+
+## rich UI
+
+`jackhammer.gif` _under construction_ `jackhammer.gif`
+
+### return data
+
+On final exit, the integration will call `ui.create()`, passing it an object that contains a `flow` object which will be merged with the flow being edited. This object can include the following arrays:
+
+1. `sources`
+2. `fields` - originally a simple array of field-name strings, this can now be an array of objects, each with these attributes:
+    1. `name` (string)
+    2. `type` (see Key Concepts section on "Field Types")
+    3. `required` (boolean)
+    4. `label` (string; not yet in use)
+3. `steps`# 4. Development Guide
 
 ## Getting Started
 
