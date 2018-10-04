@@ -45,6 +45,7 @@ This guide should tell you everything you need to know to develop LeadConduit in
     - [icon.png](#iconpng)
   - [rich UI](#rich-ui)
     - [return data](#return-data)
+- [4. Development Guide](#4-development-guide)
   - [Getting Started](#getting-started)
   - [Development Environment](#development-environment)
   - [Style Guide](#style-guide)
@@ -544,7 +545,9 @@ On final exit, the integration will call `ui.create()`, passing it an object tha
     2. `type` (see Key Concepts section on "Field Types")
     3. `required` (boolean)
     4. `label` (string; not yet in use)
-3. `steps`# 4. Development Guide
+3. `steps`
+
+# 4. Development Guide
 
 ## Getting Started
 
