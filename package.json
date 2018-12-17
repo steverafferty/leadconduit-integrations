@@ -2,7 +2,7 @@
   "name": "@activeprospect/leadconduit-integrations",
   "description": "The integrations supported by LeadConduit",
   "author": "Alex Wolfe <alex@activeprospect.com>",
-  "version": "4.10.1",
+  "version": "4.10.2",
   "main": "index.js",
   "scripts": {
     "test": "cake test",
@@ -20,7 +20,7 @@
     "@activeprospect/leadconduit-360": "2",
     "@activeprospect/leadconduit-aarp": "^1.0.0",
     "@activeprospect/leadconduit-activecampaign": "^1.0.0",
-    "@activeprospect/leadconduit-epsilon": "^0.0.1",
+    "@activeprospect/leadconduit-epsilon": "^1.0.0",
     "@activeprospect/leadconduit-adt": "^0.1.0",
     "@activeprospect/leadconduit-agile-crm": "^1.0.0",
     "@activeprospect/leadconduit-anura": "^0.1.0",
