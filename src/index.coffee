@@ -1,7 +1,6 @@
 _ = require('lodash')
 fs = require('fs')
 dotaccess = require('dotaccess')
-string = require('underscore.string')
 path = require('path')
 fs = require('fs')
 frontmatter = require('front-matter')
@@ -294,7 +293,7 @@ normalizeHeaders = (headers) ->
 #
 generateName = (modulePath) ->
   name = modulePath.replace(/(inbound|outbound)\./, '').replace(/_/g, ' ').split(/\s|\./).map (part) ->
-    string.capitalize(part)
+    _.upperCase(part)
   name.join(' ')
 
 
