@@ -68,7 +68,7 @@
     "@activeprospect/leadconduit-powerbi": "~0.0.1",
     "@activeprospect/leadconduit-retentionscience": "^1.0.0",
     "@activeprospect/leadconduit-sailthru": "~0.0.1",
-    "@activeprospect/leadconduit-salesforce": "^3.0.0",
+    "@activeprospect/leadconduit-salesforce": "^4.0.0",
     "@activeprospect/leadconduit-sendgrid": "^2.0.0",
     "@activeprospect/leadconduit-speak2leads": "^1.0.0",
     "@activeprospect/leadconduit-teledrip": "~0.0.1",
